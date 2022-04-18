@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "BYekan";
+  src: url("../fonts/BYEKAN/BYekan.woff");
+  src: url("../fonts/BYEKAN/BYekan.woff2");
+  src: url("../fonts/BYEKAN/BYekan.ttf");
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "BYekan", sans-serif;
+}
