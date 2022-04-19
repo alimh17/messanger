@@ -1,0 +1,100 @@
+.img {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 80%, 0 100%);
+  clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0 100%);
+  border-radius: 0.8rem;
+  transition: all 0.8s ease;
+  position: relative;
+  z-index: 5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.formContainer {
+  transition: all 0.8s ease;
+}
+
+.formAnim {
+  transform: translateX(-100%);
+}
+
+.imgAnim {
+  transform: translateX(103%);
+}
+
+.shape {
+  position: absolute;
+  top: 0;
+  background-color: rgb(230, 37, 101);
+  width: 100%;
+  height: 25vh;
+  border-radius: 0 0 50% 50%/0 0 100% 100%;
+  z-index: -10;
+  transition: all 0.8s ease-in;
+}
+
+.animShape {
+  position: absolute;
+  top: 0;
+  background-color: rgb(230, 37, 101);
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  border-radius: 0;
+  transition: all 0.8s ease;
+  animation: shapeAnim 1s ease-in;
+  animation-fill-mode: both;
+}
+
+@keyframes shapeAnim {
+  0% {
+    height: 30vh;
+    border-radius: 0 0 50% 50%/0 0 100% 100%;
+    background-color: rgb(230, 37, 101);
+  }
+  15% {
+    height: 60vh;
+    border-radius: 50px;
+    background-color: rgb(236, 84, 134);
+  }
+  25% {
+    height: 80vh;
+    border-radius: 25px;
+    background-color: rgb(237, 123, 161);
+  }
+  45% {
+    height: 100vh;
+    border-radius: 0;
+    background-color: rgb(240, 166, 191);
+  }
+
+  60% {
+    height: 90vh;
+    border-radius: 0;
+    opacity: 0;
+    background-color: rgb(244, 203, 217);
+  }
+
+  70% {
+    height: 0px;
+  }
+  100% {
+    height: 25vh;
+    border-radius: 0 0 50% 50%/0 0 100% 100%;
+    background-color: rgb(230, 37, 101);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .formContainer {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 80%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    border-radius: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .formContainer {
+    transform: translateX(0);
+  }
+}
