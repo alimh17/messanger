@@ -1,34 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
 import { singupScema } from "../../../utils/yup";
 import { Field, Form, Formik } from "formik";
 import { useToasts } from "react-toast-notifications";
+import {AuthContext} from '../context/AuthContext'
+import axios from "axios";
+
+import {handleShowToast} from '../../../utils/showToast'
 
 const Register = ({ setShow }) => {
   const { addToast } = useToasts();
+  const {setUserName , setPassword} = useContext(AuthContext)
 
-  const handleShowToast = (err, touch) => {
-    if (err.username && touch.username) {
-      addToast(err.username, {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
-    if (err.email && touch.email) {
-      addToast(err.email, {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
-    if (err.pass && touch.pass) {
-      addToast(err.pass, {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
-  };
 
   return (
     <>
@@ -37,15 +22,32 @@ const Register = ({ setShow }) => {
         initialValues={{
           username: "",
           email: "",
-          pass: "",
+          password: "",
         }}
         validationSchema={singupScema}
-        onSubmit={(values) => {
-          addToast("ثبت نام موفقیت آمیز بود", {
-            appearance: "success",
-            autoDismiss: true,
-          });
-          setShow(false);
+        onSubmit={async (values) => {
+          try {
+            const res = await axios.post("http://171.22.24.40:5000/api/v1/auth/register" , values , {
+              headers : {
+                'Content-Type': 'application/json; charset=utf-8',
+              }
+            })
+               if(res.status === 200){
+                addToast("ثبت نام موفقیت آمیز بود", {
+                  appearance: "success",
+                  autoDismiss: true,
+                });
+                setUserName(values.username)
+                setPassword(values.password)
+                setShow(false)
+              }
+            
+          } catch (err) {
+            addToast(err.response.data.msg , {
+              appearance: "error",
+              autoDismiss: true,
+            });
+          }
         }}
       >
         {({ errors, touched }) => (
@@ -81,17 +83,16 @@ const Register = ({ setShow }) => {
             <div className="w-2/3">
               <Field
                 type="password"
-                name="pass"
-                id="pass"
+                name="password"
+                id="password"
                 autoComplete="true"
                 placeholder="رمز عبور"
                 className="outline-0 border border-gray-400  w-full p-2  rounded-lg bg-gray-300 focus:border-violet-800 focus:border-2 transition-all duration-200 ease-in pl-8"
               />
             </div>
-
             <input
               onClick={(e) => {
-                handleShowToast(errors, touched);
+                handleShowToast(errors, touched , addToast);
               }}
               type="submit"
               value="ثبت نام"
