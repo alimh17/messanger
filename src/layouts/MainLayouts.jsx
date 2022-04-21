@@ -4,11 +4,13 @@ import MobileAddUser from "../mobile/MobileAddUser";
 import MobileNavbar from "../mobile/nav/MobileNavbar";
 
 const MainLayouts = (props) => {
+  
+
   return (
-    <div>
+    <div className="bg-white dark:bg-slate-800">
       <Navbar />
-      <MobileNavbar/>
-      <MobileAddUser/>
+      <MobileNavbar />
+      <MobileAddUser />
       {props.children}
     </div>
   );

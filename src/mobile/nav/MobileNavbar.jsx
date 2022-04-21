@@ -8,7 +8,7 @@ const MobileNavbar = () => {
   const [active, setAcitve] = useState(false);
 
   return (
-    <nav className="h-20 md:hidden dark:bg-slate-900 flex flex-col justify-around">
+    <nav className="fixed w-full h-20 md:hidden dark:bg-slate-900 flex flex-col justify-around border-b dark:border-b-0">
       <div className="flex justify-between">
         <Right />
         <Left />
@@ -19,12 +19,15 @@ const MobileNavbar = () => {
         >
           <div className="flex justify-around w-full">
             <li
-              className="pt-2 text-sm flex flex-col"
+              className="pt-2 text-sm flex flex-col dark:text-white"
               onClick={() => setAcitve(false)}
             >
               چت
             </li>
-            <li className="pt-2 text-sm" onClick={() => setAcitve(true)}>
+            <li
+              className="pt-2 text-sm dark:text-white"
+              onClick={() => setAcitve(true)}
+            >
               همه
             </li>
           </div>
