@@ -6,11 +6,11 @@ import axios from "axios";
 import { loginScema } from "../../../utils/yup";
 import { useToasts } from "react-toast-notifications";
 import { showToastLogin } from "../../../utils/showToast";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setShow }) => {
   const { addToast } = useToasts();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -38,9 +38,8 @@ const Login = ({ setShow }) => {
                 appearance: "success",
                 autoDismiss: true,
               });
-              localStorage.setItem('token' , res.data.data.token)
-              navigate("/home" , {replace : true})
-              
+              localStorage.setItem("token", res.data.data.token);
+              navigate("/home", { replace: true });
             }
           } catch (err) {
             if (err.response.status === 400) {
@@ -103,7 +102,7 @@ const Login = ({ setShow }) => {
       <h2 className="m-3">
         ایجاد حساب کاربری |
         <span
-          className="text-violet-800 border-b border-b-violet-800 mx-2"
+          className="text-violet-800 border-b border-b-violet-800 mx-2 "
           onClick={() => setShow(true)}
         >
           ثبت نام؟

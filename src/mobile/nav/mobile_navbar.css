@@ -1,0 +1,19 @@
+
+.nav::after {
+    content: "";
+    position: relative;
+    border: .5px solid rgb(89, 11, 137);
+    width: 50%;
+    transition: all .3s ease;
+}
+
+
+.translate_nav::after {
+    content: "";
+    position: relative;
+    border: .5px solid rgb(89, 11, 137);
+    width: 50%;
+    transform: translateX(-100%);
+    transition: all .3s ease;
+
+}
