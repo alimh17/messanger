@@ -16,4 +16,6 @@ body,
 html {
   font-family: "BYekan", sans-serif;
   direction: rtl;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
