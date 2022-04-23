@@ -15,16 +15,16 @@ const SidebarFooter = () => {
     <div className="flex flex-col  justify-center items-center p-3">
       {dark ? (
         <BsFillSunFill
-          className="text-3xl m-2 text-gray-400  my-3 cursor-pointer"
+          className="text-3xl m-2 text-gray-400  my-3 cursor-pointer   "
           onClick={() => dispatch(lightModeAction())}
         />
       ) : (
         <BsFillMoonFill
-          className="text-3xl m-2 text-gray-400 my-3 cursor-pointer"
+          className="text-3xl m-2  my-3 cursor-pointer text-indigo-800 "
           onClick={() => dispatch(darkModeAction())}
         />
       )}
-      <BiLogOutCircle className="text-4xl m-2 text-gray-400 cursor-pointer" />
+      <BiLogOutCircle className="text-4xl m-2  cursor-pointer text-rose-600" />
     </div>
   );
 };

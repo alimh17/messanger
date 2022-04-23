@@ -2,7 +2,7 @@ import React from "react";
 
 const RightSection = () => {
   return (
-    <div className=" h-screen flex flex-col items-center justify-center w-1/2 border-l border-l-gray-300 dark:border-l-indigo-500">
+    <div className=" h-screen flex flex-col items-center justify-center w-1/2 border-l border-l-gray-300 dark:border-l-indigo-500 ">
       <img
         alt="empty inbox"
         className=" h-1/4 md:h-2/6"
