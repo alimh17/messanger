@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import WithDarkMode from "./HOC/WithDarkMode";
 import MainLayouts from "./layouts/MainLayouts";
-import NotFounPage from "./pages/404/NotFounPage";
+import NotFoundPage from "./pages/404/NotFoundPage";
 
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/home/Home";
@@ -17,10 +17,10 @@ const App = () => {
       <MainLayouts>
         <WithDarkMode>
           <Routes>
-            <Route index element={<Auth />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" index element={<Home />} />
+            <Route path="/login_register" element={<Auth />} />
             <Route path="/users" element={<Users />} />
-            <Route path="*" element={<NotFounPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </WithDarkMode>
       </MainLayouts>
