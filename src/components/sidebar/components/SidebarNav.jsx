@@ -10,6 +10,7 @@ import {
   activeHomeAction,
   activeSettingAction,
 } from "../../../action/sidebarAction";
+import { Link } from "react-router-dom";
 
 const SidebarNav = () => {
   const dispatch = useDispatch();
@@ -17,14 +18,16 @@ const SidebarNav = () => {
 
   return (
     <ul className=" w-full">
-      <li
-        className={`my-10 w-full flex justify-center transition-all duration-200 cursor-pointer ${
-          sidebar[0] && "bg-indigo-700"
-        }`}
-        onClick={() => dispatch(activeHomeAction())}
-      >
-        <BiHomeAlt className="text-3xl m-2 text-gray-400" />
-      </li>
+      <Link to="/">
+        <li
+          className={`my-10 w-full flex justify-center transition-all duration-200 cursor-pointer ${
+            sidebar[0] && "bg-indigo-700"
+          }`}
+          onClick={() => dispatch(activeHomeAction())}
+        >
+          <BiHomeAlt className="text-3xl m-2 text-gray-400" />
+        </li>
+      </Link>
       <li
         className={`my-10 w-full flex justify-center transition-all duration-200 cursor-pointer ${
           sidebar[1] && "bg-indigo-700"

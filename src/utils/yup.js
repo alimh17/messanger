@@ -1,8 +1,10 @@
 import * as Yup from "yup";
+const nameRegex = /^[A-Za-z]+$/;
 
 export const singupScema = Yup.object().shape({
   username: Yup.string()
     .required("نام کاربری الزامی میباشد")
+    .matches(nameRegex, "نام کاربری باید شامل حروف انگلیسی باشد")
     .min(4, "نام کاربری باید بیشتر از چهار کاراکتر باشد")
     .max(30, "نام کاربری نباید بیش از 30 کاراکتر باشد"),
   email: Yup.string()
@@ -15,7 +17,6 @@ export const singupScema = Yup.object().shape({
   createdOn: Yup.date().default(() => new Date()),
 });
 
-
 export const loginScema = Yup.object().shape({
   emailOrUsername: Yup.string()
     .required("نام کاربری الزامی میباشد")
@@ -25,4 +26,14 @@ export const loginScema = Yup.object().shape({
     .required("کلمه عبور الزامی میباشد")
     .min(8, "کلمه عبور نمیتواند کمتر از 8  کاراکتر باشد")
     .max(60, "کلمه عبور نمیتواند بیش از 60 کاراکتر باشد"),
-})
+});
+
+export const settingScema = Yup.object().shape({
+  profile: Yup.mixed(),
+  username: Yup.string()
+    .required("نام کاربری الزامی میباشد")
+    .matches(nameRegex, "نام کاربری باید شامل حروف انگلیسی باشد")
+    .min(4, "نام کاربری باید بیشتر از چهار کاراکتر باشد")
+    .max(30, "نام کاربری نباید بیش از 30 کاراکتر باشد"),
+  bio: Yup.string().max(300, "بیوگرافی نباید بیش از 300 کاراکتر باشد"),
+});

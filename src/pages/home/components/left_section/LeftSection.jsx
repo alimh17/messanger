@@ -13,7 +13,7 @@ const LeftSection = () => {
       style={{ marginLeft: "4.8rem" }}
     >
       <UserList show={show} setShow={setShow} />
-      <div className={show && "blur-sm"}>
+      <div className={`${show && "blur-sm"} `}>
         <div className="w-full flex justify-center items-center p-5 border-b border-b-gray-300 dark:border-b-indigo-500 text-gray-400">
           <span
             className="relative -right-10 text-2xl bg-indigo-800 p-2 rounded-full text-white dark:bg-indigo-800 dark:text-white cursor-pointer"
