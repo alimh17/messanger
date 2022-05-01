@@ -1,9 +1,10 @@
+import Chat from "../../../../components/chat/Chat";
 import React from "react";
 
 const RightSection = () => {
   return (
     <div className=" h-screen flex flex-col items-center justify-center w-1/2 border-l border-l-gray-300 dark:border-l-indigo-500 ">
-      <img
+      {/* <img
         alt="empty inbox"
         className=" h-1/4 md:h-2/6"
         style={{
@@ -11,7 +12,8 @@ const RightSection = () => {
         }}
         src={process.env.PUBLIC_URL + "/img/empty_box.jpg"}
       />
-      <h3 className="text-xl text-gray-500 p-3 dark:text-white">بدون پیام</h3>
+      <h3 className="text-xl text-gray-500 p-3 dark:text-white">بدون پیام</h3> */}
+      <Chat />
     </div>
   );
 };

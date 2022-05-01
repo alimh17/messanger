@@ -1,0 +1,38 @@
+.shimmer {
+  color: grey;
+  display: flex;
+  -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300%
+    100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s infinite;
+  font-size: 20px;
+  opacity: 0.5;
+}
+@keyframes shimmer {
+  100% {
+    -webkit-mask-position: left;
+  }
+}
+
+.circle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 10px;
+}
+
+.top_line {
+  display: inline-block;
+  width: 80%;
+  height: 0.4rem;
+  border-radius: 20px;
+  background-color: gray;
+}
+
+.bottom_line {
+  width: 30%;
+  height: 0.4rem;
+  border-radius: 20px;
+  background-color: gray;
+}
