@@ -1,20 +1,20 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import { useDispatch } from "react-redux";
-import { useToasts } from "react-toast-notifications";
-import { BsInfoCircle } from "react-icons/bs";
-import { AiOutlineUser } from "react-icons/ai";
+import { Field, Form, Formik } from "formik";
 
-import { settingScema } from "../../../utils/yup";
+import { AiOutlineUser } from "react-icons/ai";
+import { BsInfoCircle } from "react-icons/bs";
+import React from "react";
 import { activeHomeAction } from "../../../action/sidebarAction";
 import { handleShowToast } from "../../../utils/showToast";
+import { settingScema } from "../../../utils/yup";
+import { useDispatch } from "react-redux";
+import { useToasts } from "react-toast-notifications";
 
 const FormComponent = ({ setShowImg }) => {
   const { addToast } = useToasts();
   const dispatch = useDispatch();
 
   return (
-    <div className="h-2/3 flex flex-col p-5 dark:bg-gray-800 transition-all duration-200 ease-in">
+    <div className="h-3/4 flex flex-col p-5 dark:bg-gray-800 transition-all duration-200 ease-in">
       <Formik
         initialValues={{
           profile: undefined,
@@ -37,7 +37,7 @@ const FormComponent = ({ setShowImg }) => {
               name="profile"
               accept=".jpg , .jpeg , .png"
               type="file"
-              className="relative bottom-24 w-16 opacity-0   file "
+              className="relative bottom-20 w-16  opacity-0  file "
               onChange={(e) => {
                 e.target.files[0] &&
                   setShowImg(URL.createObjectURL(e.target.files[0]));
@@ -53,7 +53,7 @@ const FormComponent = ({ setShowImg }) => {
                 type="text"
                 name="username"
                 id="username"
-                className="p-3 my-3 border-0 outline-none focus:border-b-2 focus:border-b-indigo-800 rounded-md w-full px-10 py-4 bg-gray-300 text-gray-800 text-xl"
+                className=" border-0 outline-none focus:border-b-2 focus:border-b-indigo-800 rounded-md w-full px-10 py-4 bg-gray-300 text-gray-800 text-xl"
                 placeholder="نام کاربری"
               />
             </div>
@@ -65,10 +65,10 @@ const FormComponent = ({ setShowImg }) => {
                 as="textarea"
                 type="text"
                 cols={5}
-                rows={8}
+                rows={6}
                 name="bio"
                 id="bio"
-                className="p-3 my-3 border-0 outline-none focus:border-b-2 focus:border-b-indigo-800 rounded-md w-full px-10 py-4 bg-gray-300 text-xl placeholder:text-gray-400 text-gray-800 resize-none"
+                className=" border-0 outline-none focus:border-b-2 focus:border-b-indigo-800 rounded-md w-full px-10 py-4 bg-gray-300 text-xl placeholder:text-gray-400 text-gray-800 resize-none"
                 placeholder="بیوگرافی"
               />
             </div>

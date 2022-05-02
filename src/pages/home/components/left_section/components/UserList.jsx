@@ -1,11 +1,12 @@
+import { BsFillArrowRightCircleFill, BsSearch } from "react-icons/bs";
+
 import React from "react";
 import User from "../../../../../components/user/User";
-import { BsFillArrowRightCircleFill, BsSearch } from "react-icons/bs";
 
 const UserList = ({ show, setShow }) => {
   return (
     <div
-      className={`absolute right-0 h-screen bg-gray-200 z-10  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease ${
+      className={`absolute right-0 h-screen bg-gray-200 z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease ${
         show ? "translate-x-0" : "translate-x-full "
       }
     dark:bg-slate-800 dark:border-l-indigo-500

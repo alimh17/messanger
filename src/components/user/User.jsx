@@ -1,9 +1,16 @@
-import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import React from "react";
+import { ShowChatAction } from "../../action/showChatAction";
+import { useDispatch } from "react-redux";
 
 const User = () => {
+  const dispatch = useDispatch();
+
   return (
-    <article className="border-b border-gray-300 dark:border-b-indigo-400">
+    <article
+      className="border-b border-gray-300 dark:border-b-indigo-400"
+      onClick={() => dispatch(ShowChatAction())}
+    >
       <div className="w-full h-16 flex justify-between bg-gray-200 dark:bg-gray-800">
         <div className="flex items-center">
           <img

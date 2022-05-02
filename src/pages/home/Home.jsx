@@ -23,7 +23,7 @@ const Home = () => {
   }, [navigate]);
 
   return (
-    <section className={`${sidebar[4] && "blur-sm"} `}>
+    <section className={`${sidebar[4] && "blur-sm"} font-sans`}>
       <ChatsNav active={active} setAcitve={setAcitve} />
       <Sidebar />
       {!active && (

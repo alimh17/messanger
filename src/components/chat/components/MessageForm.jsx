@@ -6,7 +6,7 @@ import React from "react";
 const MessageForm = () => {
   return (
     <form
-      className=" w-full   flex  justify-center h-1/6"
+      className=" w-full   flex  justify-center "
       onSubmit={(e) => e.preventDefault()}
       style={{ height: "5%" }}
     >
