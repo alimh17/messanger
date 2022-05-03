@@ -1,9 +1,9 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import React from "react";
 import { ShowChatAction } from "../../action/showChatAction";
 import { useDispatch } from "react-redux";
 
-const User = () => {
+const User = ({ user }) => {
   const dispatch = useDispatch();
 
   return (
@@ -20,8 +20,10 @@ const User = () => {
           />
         </div>
         <div className="flex items-center">
-          <h2 className="text-gray-600 mx-2 dark:text-white">alimh</h2>
-          <BsThreeDotsVertical className="mx-2 text-2xl text-indigo-800 dark:text-white" />
+          <h2 className="text-gray-600 mx-2 dark:text-white">
+            {user && user.username}
+          </h2>
+          <AiOutlinePlusCircle className="mx-2 text-2xl text-indigo-800 dark:text-white" />
         </div>
       </div>
     </article>

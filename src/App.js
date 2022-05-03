@@ -10,17 +10,17 @@ import Home from "./pages/home/Home";
 import Users from "./pages/users/Users";
 
 const App = () => {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <ToastProvider autoDismiss autoDismissTimeout={6000} placement="top-right">
       <MainLayouts>
         <WithDarkMode>
           <Routes>
-            <Route path="/" index element={<Home />} />
             <Route path="/login_register" element={<Auth />} />
             <Route path="/users" element={<Users />} />
             <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" index element={<Home />} />
           </Routes>
         </WithDarkMode>
       </MainLayouts>

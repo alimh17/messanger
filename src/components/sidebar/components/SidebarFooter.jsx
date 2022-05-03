@@ -6,9 +6,11 @@ import {
   darkModeAction,
   lightModeAction,
 } from "../../../action/darkModeAction";
+import { useToasts } from "react-toast-notifications";
 
 const SidebarFooter = () => {
   const dark = useSelector((state) => state.dark);
+  const { addToast } = useToasts();
   const dispatch = useDispatch();
 
   return (
@@ -24,7 +26,17 @@ const SidebarFooter = () => {
           onClick={() => dispatch(darkModeAction())}
         />
       )}
-      <BiLogOutCircle className="text-4xl m-2  cursor-pointer text-rose-600" />
+      <BiLogOutCircle
+        className="text-4xl m-2  cursor-pointer text-rose-600"
+        onClick={() => {
+          window.location.reload();
+          localStorage.removeItem("token");
+          addToast("خروج موفقیت آمیز بود", {
+            appearance: "success",
+            autoDismiss: true,
+          });
+        }}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import User from "../../../../components/user/User";
 import UserList from "./components/UserList";
 
 const LeftSection = () => {
@@ -29,12 +29,6 @@ const LeftSection = () => {
             placeholder="جستجو"
             className="border-none outline-none p-2 w-2/3 bg-gray-200 rounded-md px-9 text-xl "
           />
-        </div>
-        <div>
-          <User />
-          <User />
-          <User />
-          <User />
         </div>
       </div>
     </section>

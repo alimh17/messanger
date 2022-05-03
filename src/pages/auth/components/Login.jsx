@@ -1,16 +1,22 @@
+import { Field, Form, Formik } from "formik";
 import React from "react";
+
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Field, Form, Formik } from "formik";
-import axios from "axios";
+import { getProfileRequest, loginRequest } from "../../../server/server";
 import { loginScema } from "../../../utils/yup";
-import { useToasts } from "react-toast-notifications";
 import { showToastLogin } from "../../../utils/showToast";
 import { useNavigate } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
+import { userDataAction } from "../../../action/userDataAction";
+import { useDispatch } from "react-redux";
 
 const Login = ({ setShow }) => {
   const { addToast } = useToasts();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [token, setToken] = useState(null);
+  // const { decodedToken, isExpired } = useJwt(token);
 
   return (
     <>
@@ -23,15 +29,7 @@ const Login = ({ setShow }) => {
         validationSchema={loginScema}
         onSubmit={async (values) => {
           try {
-            const res = await axios.post(
-              "http://171.22.24.40:5000/api/v1/auth/login",
-              values,
-              {
-                headers: {
-                  "Content-Type": "application/json; charset=utf-8",
-                },
-              }
-            );
+            const res = await loginRequest(values);
 
             if (res.status === 200) {
               addToast("ورود با موفقیت انجام شد", {
@@ -39,7 +37,11 @@ const Login = ({ setShow }) => {
                 autoDismiss: true,
               });
               localStorage.setItem("token", res.data.data.token);
-              navigate("/home", { replace: true });
+              navigate("/", { replace: true });
+              const data = await getProfileRequest(res.data.data.token);
+              await dispatch(userDataAction(data.data.user.profile));
+              // setToken(res.data.data.token);
+              // console.log(decodedToken);
             }
           } catch (err) {
             if (err.response.status === 400) {

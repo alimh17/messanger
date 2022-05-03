@@ -1,9 +1,24 @@
 import { BsFillArrowRightCircleFill, BsSearch } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
 
-import React from "react";
 import User from "../../../../../components/user/User";
+import { UsersRequest } from "../../../../../server/server";
 
 const UserList = ({ show, setShow }) => {
+  const [allUser, setAllUser] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
+  const sendRequest = async () => {
+    const res = await UsersRequest();
+    res.status === 200 && setLoading(true);
+    setAllUser(res.data);
+  };
+
   return (
     <div
       className={`absolute right-0 h-screen bg-gray-200 z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease ${
@@ -32,11 +47,10 @@ const UserList = ({ show, setShow }) => {
           </span>
         </div>
       </div>
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
+      {allUser &&
+        allUser.map((user, index) => (
+          <User user={user} key={index} loading={loading} />
+        ))}
     </div>
   );
 };

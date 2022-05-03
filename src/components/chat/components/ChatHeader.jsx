@@ -12,7 +12,7 @@ const ChatHeader = () => {
 
   return (
     <section
-      className="w-full flex justify-between border-b-2 "
+      className="fixed w-full flex justify-between border-b-2 "
       style={{ height: "10%" }}
     >
       <div

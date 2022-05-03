@@ -5,6 +5,7 @@ import style from "../mobile_sidebar.module.css";
 
 const HeadSidebar = () => {
   const dark = useSelector((state) => state.dark);
+  const profile = useSelector((state) => state.userData);
 
   return (
     <div
@@ -15,15 +16,20 @@ const HeadSidebar = () => {
       <span
         className=" w-24 h-24  rounded-full bg-gray-500 right-1/2 top-2  ml-4"
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL + "/img/auth.jpg"})`,
+          backgroundImage: `url(${profile.image && profile.image})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
       ></span>
       <span className="p-3 mx-3 ml-4">
-        <h2 className="text-xl text-gray-400">Alimh17</h2>
+        <h2 className="text-xl text-gray-400">
+          {profile.name ? profile.name : "میهمان"}
+        </h2>
       </span>
+      {/* <h2 className=" text-2xl  text-gray-400 w-5/6 text-center">
+        {profile.biography ? profile.biography : "میهمان"}
+      </h2> */}
     </div>
   );
 };
