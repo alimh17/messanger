@@ -1,6 +1,7 @@
 import { AiFillPlusCircle } from "react-icons/ai";
 import React from "react";
 import { ShowChatAction } from "../../action/showChatAction";
+import { initChatAction } from "../../action/currentChatAction";
 import { useDispatch } from "react-redux";
 import { addPersonalChat } from "../../action/personalChatsAction";
 import { generateColor } from "../../utils/generateColor";
@@ -12,7 +13,10 @@ const User = ({ user }) => {
   return (
     <article
       className=" dark:border-b-indigo-400 h-72 flex justify-center items-center w-full bg-indigo-400 bg-opacity-80 rounded-lg "
-      onClick={() => dispatch(ShowChatAction())}
+      onClick={() => {
+        dispatch(ShowChatAction());
+        dispatch(initChatAction(user));
+      }}
       style={{ backgroundColor: color }}
     >
       <div className="w-full  h-full rounded-lg flex flex-col  justify-around items-center   cursor-pointer dark:bg-gray-700 bg-opacity-80  text-white transition-all ease-in duration-200">

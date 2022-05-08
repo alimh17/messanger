@@ -2,7 +2,7 @@ import React from "react";
 
 const ChatsNav = ({ active, setAcitve }) => {
   return (
-    <div className="flex w-full fixed z-10 top-16 md:hidden  dark:bg-slate-900">
+    <div className="flex w-full fixed z-10 top-16 md:hidden bg-white  dark:bg-slate-900">
       <ul
         className={`flex flex-col w-full  pb-3 border-b-2 dark:border-b-0 ${
           active ? "translate_nav" : "nav"

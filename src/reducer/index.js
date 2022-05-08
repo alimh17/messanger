@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { allUserReducer } from "./allUserReducer";
 import { currentChatReducer } from "./currentChat";
 import { darkMode } from "./darkMode";
 import { mobileSidebar } from "./mobileSidebar";
@@ -15,4 +16,5 @@ export const reducers = combineReducers({
   userData: userDataReducer,
   personalChat: personalChatsReducer,
   currentChat: currentChatReducer,
+  allUser: allUserReducer
 });

@@ -1,8 +1,10 @@
 import _ from 'lodash'
 
 export const addPersonalChat = (user) => (dispatch, getState) => {
-    let copyPersonalChats = [...getState().personalChat]
-    copyPersonalChats.push(user)
-    const uniq = _.uniq(copyPersonalChats)
+    const copyPersonalChat = [...getState().personalChat]
+    copyPersonalChat.push(user)
+    const uniq = _.uniqWith(copyPersonalChat, user.username)
+
+
     dispatch({ type: "ADD_CHAT", payload: uniq })
 }

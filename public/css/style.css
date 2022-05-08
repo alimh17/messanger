@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body,
@@ -56,4 +57,22 @@ html {
   height: 0.4rem;
   border-radius: 20px;
   background-color: gray;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+  width: 0.5rem;
+  border-radius: 20px;
+  background-color: rgb(194, 194, 194);
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgb(78, 0, 134);
+  border-radius: 20px;
+  opacity: 0.5;
+}
+
+.scroll::-webkit-scrollbar-track {
+  border-radius: 80%;
+  color: gray;
 }

@@ -23,11 +23,11 @@ const App = () => {
         <MainLayouts>
           <WithDarkMode>
             <Routes>
+              <Route path="/" index element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/users" element={<Users />} />
               <Route path="*" element={<NotFoundPage />} />
-              <Route path="/" index element={<Home />} />
             </Routes>
           </WithDarkMode>
         </MainLayouts>

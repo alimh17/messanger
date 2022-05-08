@@ -34,9 +34,6 @@ const Login = () => {
                 appearance: "success",
                 autoDismiss: true,
               });
-              // const data = await getProfileRequest(res.data.data.token);
-              // await dispatch(userDataAction(data.data.user.profile));
-              // setToken(res.data.data.token);
               navigate("/", { replace: true });
             }
           } catch (err) {

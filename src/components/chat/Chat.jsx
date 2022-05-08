@@ -46,7 +46,7 @@ const Chat = () => {
 
   return (
     <section
-      className={`absolute top-0 z-40 w-full md:w-1/2 h-screen bg-white  dark:bg-slate-800 transition-all duration-300 ease-linear overflow-y-scroll chat`}
+      className={`fixed top-0 z-40 w-full md:w-1/2 h-screen bg-white border-l border-l-gray-400 dark:border-l-indigo-400 dark:bg-slate-800 transition-all duration-300 ease-linear `}
       style={
         showChat
           ? {
@@ -57,19 +57,11 @@ const Chat = () => {
     >
       <ChatHeader current={current} />
 
-      <div
-        className="  flex flex-col justify-end w-full  px-5 "
-        style={{ height: "85%" }}
-      >
-        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
-        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
-        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
-        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
-      </div>
+      <div className=" flex flex-col justify-start w-full h-screen  px-5   overflow-y-scroll pb-24 pt-24 chat"></div>
 
       <form
         style={{ height: "8%" }}
-        className="sticky bottom-0 w-full  flex  justify-center items-center py-3  bg-white"
+        className="fixed bottom-0 w-full  flex  justify-center items-center py-3 dark:bg-slate-800 transition-all duration-200 ease-in bg-white border-t "
         onSubmit={handleSubmit}
       >
         <button

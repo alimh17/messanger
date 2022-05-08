@@ -11,22 +11,22 @@ const ChatList = ({ show }) => {
     <section
       className={`${
         show && "blur-sm"
-      }   w-full h-full  items-center justify-center `}
+      } w-full  h-full  items-center justify-center `}
     >
       {chats.length === 0 ? (
-        <div className="flex justify-center  items-center bg-orange-100 ">
+        <div className=" w-full relative   flex justify-center  items-center h-full md:px-3">
           <img
             style={{ borderRadius: "33% 67% 54% 46% / 50% 46% 54% 50% " }}
-            className="w-2/3 md:w-full md:h-2/4 lg:w-3/5"
+            className="w-3/4 md:w-full md:mx-3 md:h-2/4 lg:w-3/5"
             alt="without chat"
             src={process.env.PUBLIC_URL + "/img/empty_box.jpg"}
           />
         </div>
       ) : (
         <div className="px-6 ">
-          {chats.map((u) => (
+          {chats.map((u, i) => (
             <div
-              key={u._id}
+              key={i}
               className="m-3 border-b-2 flex justify-between dark:border-b-indigo-400 w-full hover:bg-indigo-500 p-3 cursor-pointer rounded-sm hover:text-white transition-all ease-in duration-200 dark:hover:bg-white dark:hover:text-gray-900 dark:text-white"
               onClick={() => dispatch(currentChatAction(u))}
             >

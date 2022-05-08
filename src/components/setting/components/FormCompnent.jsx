@@ -10,6 +10,7 @@ import { useToasts } from "react-toast-notifications";
 import { SettingRequest } from "../../../server/server";
 import { useDispatch } from "react-redux";
 import Loading from "../../loading/Loading";
+import { allUserAction } from "../../../action/allUserAction";
 
 const FormComponent = ({ setShowImg, data }) => {
   const [loading, setLoading] = useState();
@@ -49,6 +50,7 @@ const FormComponent = ({ setShowImg, data }) => {
               });
               setLoading(false);
               dispatch(activeHomeAction());
+              dispatch(allUserAction());
             } else {
               addToast(res.data.fa_message, {
                 autoDismiss: true,

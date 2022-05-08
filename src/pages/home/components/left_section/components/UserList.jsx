@@ -2,28 +2,23 @@ import { BsFillArrowRightCircleFill, BsSearch } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 
 import User from "../../../../../components/user/User";
-import { UsersRequest } from "../../../../../server/server";
 
 import "./user_list.css";
-import { generateColor } from "../../../../../utils/generateColor";
+import { useDispatch, useSelector } from "react-redux";
+import { allUserAction } from "../../../../../action/allUserAction";
 
 const UserList = ({ show, setShow }) => {
-  const [allUser, setAllUser] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, ] = useState(false);
+  const dispatch = useDispatch();
+  const allUser = useSelector((state) => state.allUser);
 
   useEffect(() => {
-    sendRequest();
-  }, []);
-
-  const sendRequest = async () => {
-    const res = await UsersRequest();
-    res.status === 200 && setLoading(true);
-    setAllUser(res.data);
-  };
+    dispatch(allUserAction());
+  }, [dispatch]);
 
   return (
     <div
-      className={`absolute right-0 h-screen overflow-y-scroll bg-gray-200  z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease userList ${
+      className={`absolute right-0 h-screen overflow-y-scroll  z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease userList  bg-white ${
         show ? "translate-x-0" : "translate-x-full "
       }
     dark:bg-slate-800 dark:border-l-indigo-500
@@ -49,9 +44,7 @@ const UserList = ({ show, setShow }) => {
           </span>
         </div>
       </div>
-      <div
-        className="grid grid-rows-2 grid-cols-2 gap-2 "
-      >
+      <div className="grid grid-rows-2 grid-cols-2 gap-2 ">
         {allUser &&
           allUser.map((user, index) => (
             <User user={user} key={index} loading={loading} />

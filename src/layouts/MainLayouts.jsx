@@ -16,10 +16,10 @@ const MainLayouts = (props) => {
         <>
           <MobileNavbar />
           <MobileAddUser />
+          <MobileSidebar />
           {show[4] && <Setting />}
         </>
       ) : null}
-      <MobileSidebar />
       {props.children}
     </div>
   );

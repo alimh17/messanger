@@ -1,4 +1,5 @@
 .chat::-webkit-scrollbar {
+  display: none;
   width: 0.5rem;
   border-radius: 20px;
   background-color: rgb(194, 194, 194);

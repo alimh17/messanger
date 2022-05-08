@@ -6,28 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiCamera } from "react-icons/bi";
 import FormComponent from "./components/FormCompnent";
 import { activeHomeAction } from "../../action/sidebarAction";
-import Loading from "../loading/Loading";
 import { useQuery } from "react-query";
-import { initUserInformation } from "../../server/server";
+import { getProfileRequest } from "../../server/server";
 import LoadingSetting from "./components/LoadingSetting";
 
 const Setting = () => {
   const dispatch = useDispatch();
   const [showImg, setShowImg] = useState("");
-
   const sidebar = useSelector((state) => state.sidebar);
 
-  const fetchData = async () => {
-    const res = await fetch("http://194.147.142.72:5000/api/v1/init", {
-      method: "POST",
-      headers: {
-        Authorization: `${localStorage.getItem("token")}`,
-      },
-    }).then((res) => res.json());
-    return res;
-  };
-
-  const { isLoading, isError, data } = useQuery("user-info", fetchData);
+  const { isLoading, data } = useQuery("user-info", getProfileRequest);
 
   return (
     <>
@@ -35,7 +23,7 @@ const Setting = () => {
         <LoadingSetting />
       ) : (
         <section
-          className={`absolute top-0 w-full h-screen flex  justify-center items-center z-40    setting `}
+          className={`fixed top-0 w-full h-screen flex  justify-center items-center z-40    setting `}
           onClick={(e) =>
             e.target.classList.contains("setting") &&
             dispatch(activeHomeAction())

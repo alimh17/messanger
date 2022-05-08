@@ -10,11 +10,15 @@ const LeftSection = () => {
 
   return (
     <section
-      className={` w-1/2  flex flex-col transition-all duration-200 `}
+      className={` w-1/2  flex flex-col transition-all duration-200 h-screen overflow-y-scroll scroll-m-80 scroll`}
       style={{ marginLeft: "4.8rem" }}
     >
       <UserList show={show} setShow={setShow} />
-      <div className={`${show && "blur-sm"} `}>
+      <div
+        className={`${
+          show && "blur-sm"
+        } sticky top-0 transition-all ease-in duration-200 border-l dark:border-l-indigo-400 bg-white dark:bg-slate-800`}
+      >
         <div className="w-full flex justify-center items-center p-5 border-b border-b-gray-300 dark:border-b-indigo-500 text-gray-400">
           <span
             className="relative -right-10 text-2xl bg-indigo-800 p-2 rounded-full text-white dark:bg-indigo-800 dark:text-white cursor-pointer"

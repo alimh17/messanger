@@ -11,7 +11,7 @@ const RightSection = () => {
         <Chat />
       ) : (
         <>
-          <img
+          {/* <img
             alt="empty inbox"
             className=" h-1/4 md:h-2/6"
             style={{
@@ -21,7 +21,7 @@ const RightSection = () => {
           />
           <h3 className="text-xl text-gray-500 p-3 dark:text-white">
             بدون پیام
-          </h3>
+          </h3> */}
         </>
       )}
     </div>

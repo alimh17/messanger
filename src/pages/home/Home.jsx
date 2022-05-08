@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/loading/Loading";
 import ChatList from "../../components/chatList/ChatList";
+import { allUserAction } from "../../action/allUserAction";
 
 const Home = () => {
   const [active, setAcitve] = useState(false);

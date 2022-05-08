@@ -1,18 +1,9 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { getProfileRequest } from "../../../server/server";
 
 const SidebarProfile = () => {
-  const fetchData = async () => {
-    const res = await fetch("http://194.147.142.72:5000/api/v1/init", {
-      method: "POST",
-      headers: {
-        Authorization: `${localStorage.getItem("token")}`,
-      },
-    }).then((res) => res.json());
-    return res;
-  };
-
-  const { isLoading, isError, data } = useQuery("user-info", fetchData);
+  const { isLoading, isError, data } = useQuery("user-info", getProfileRequest);
 
   return (
     <div className="flex justify-center items-center p-3">

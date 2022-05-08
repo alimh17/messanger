@@ -64,14 +64,16 @@ export const initUserInformation = async () => {
 }
 
 
-// // export const getProfileRequest = async () => {
-// //     try {
-// //         return await axios.post(`${URL + Profile}`, {
-// //             headers: {
-// //                 "Authorization": token
-// //             }
-// //         })
-// //     } catch (error) {
-// //         console.log(error.response)
-// //     }
-// // }
+export const getProfileRequest = () => {
+    try {
+        const res = fetch("http://194.147.142.72:5000/api/v1/init", {
+            method: "POST",
+            headers: {
+                Authorization: `${localStorage.getItem("token")}`,
+            },
+        }).then((res) => res.json());
+        return res;
+    } catch (err) {
+        console.log(err)
+    }
+}
