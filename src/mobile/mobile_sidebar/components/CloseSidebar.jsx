@@ -11,7 +11,7 @@ const CloseSidebar = () => {
       className=" w-14 h-8 text-2xl flex justify-center items-center absolute right-0  z-10 text-gray-500 m-2"
       onClick={() => dispatch(hideMobileSidebarAction())}
     >
-      <AiOutlineArrowLeft className="text-2xl text-gray-600 dark:text-indigo-600 w-full" />
+      <AiOutlineArrowLeft className="text-2xl text-white  w-full" />
     </span>
   );
 };

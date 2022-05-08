@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Left = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userData);
-  console.log(profile);
 
   return (
     <div className="flex items-center">

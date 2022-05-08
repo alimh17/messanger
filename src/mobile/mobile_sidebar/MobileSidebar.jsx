@@ -10,7 +10,7 @@ const MobileSidebar = React.memo(() => {
 
   return (
     <aside
-      className={`absolute top-0 left-0 bg-gray-200 h-screen w-3/4  rounded-r-lg transition-all ease-in duration-200 z-20 flex-col border-r dark:bg-slate-800 dark:border-r-white md:hidden 
+      className={`absolute top-0 left-0 bg-gray-400 bg-opacity-90 h-screen w-3/4  rounded-r-lg transition-all ease-in duration-200 z-20 flex-col border-r dark:bg-slate-800 dark:border-r-white md:hidden 
       
         ${sidebar ? "flex" : "hidden"}
       `}

@@ -7,20 +7,32 @@ import { BiCamera } from "react-icons/bi";
 import FormComponent from "./components/FormCompnent";
 import { activeHomeAction } from "../../action/sidebarAction";
 import Loading from "../loading/Loading";
+import { useQuery } from "react-query";
+import { initUserInformation } from "../../server/server";
+import LoadingSetting from "./components/LoadingSetting";
 
 const Setting = () => {
   const dispatch = useDispatch();
   const [showImg, setShowImg] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const profile = useSelector((state) => state.userData);
 
   const sidebar = useSelector((state) => state.sidebar);
 
+  const fetchData = async () => {
+    const res = await fetch("http://194.147.142.72:5000/api/v1/init", {
+      method: "POST",
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    }).then((res) => res.json());
+    return res;
+  };
+
+  const { isLoading, isError, data } = useQuery("user-info", fetchData);
+
   return (
     <>
-      {loading ? (
-        <Loading />
+      {isLoading ? (
+        <LoadingSetting />
       ) : (
         <section
           className={`absolute top-0 w-full h-screen flex  justify-center items-center z-40    setting `}
@@ -30,15 +42,19 @@ const Setting = () => {
           }
         >
           <div
-            className={`bg-gray-200  h-screen rounded-md  border transition-all duration-300 ease-out dark:border-indigo-800 ${
+            className={`bg-gray-300 md:bg-grary-400 h-screen rounded-md  border transition-all duration-300 ease-out bg-opacity-90 md:bg-opacity-70 dark:border-indigo-800 ${
               sidebar[4] ? "translate-x-0 w-full md:w-2/3" : "translate-x-full"
             } `}
           >
-            <div className="h-1/4 flex flex-col items-end justify-between border-b-2 border-b-indigo-800 img-container ">
-              {showImg || profile.image ? (
+            <div className="h-1/4 flex flex-col items-end justify-between border-b-2 border-b-indigo-800 bg-indigo-700 bg-opacity-80 ">
+              {showImg || data.user.profile.image ? (
                 <img
                   alt="profile"
-                  src={showImg ? showImg : profile.image && profile.image}
+                  src={
+                    showImg
+                      ? showImg
+                      : data.user.profile.image && data.user.profile.image
+                  }
                   className=" rounded-full m-3"
                   style={{ width: "5rem", height: "5rem" }}
                 />
@@ -47,7 +63,7 @@ const Setting = () => {
                   className=" rounded-full m-3 bg-orange-400 flex justify-center items-center text-4xl text-white"
                   style={{ width: "5rem", height: "5rem" }}
                 >
-                  {profile.name && profile.name.slice(0, 1)}
+                  {data.user.profile.name && data.user.profile.name.slice(0, 1)}
                 </div>
               )}
 
@@ -55,10 +71,10 @@ const Setting = () => {
                 <BiCamera />
               </span>
               <p className="md:text-2xl mx-4 text-white p-3">
-                {profile.name ? profile.name : "میهمان"}
+                {data.user.profile.name ? data.user.profile.name : "میهمان"}
               </p>
             </div>
-            <FormComponent setShowImg={setShowImg} setLoading={setLoading} />
+            <FormComponent setShowImg={setShowImg} data={data} />
           </div>
         </section>
       )}

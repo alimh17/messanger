@@ -1,0 +1,16 @@
+.chat::-webkit-scrollbar {
+  width: 0.5rem;
+  border-radius: 20px;
+  background-color: rgb(194, 194, 194);
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: rgb(78, 0, 134);
+  border-radius: 20px;
+  opacity: 0.5;
+}
+
+.chat::-webkit-scrollbar-track {
+  border-radius: 80%;
+  color: gray;
+}

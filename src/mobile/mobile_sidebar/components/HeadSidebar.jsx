@@ -8,13 +8,9 @@ const HeadSidebar = () => {
   const profile = useSelector((state) => state.userData);
 
   return (
-    <div
-      className={`h-1/3  flex border-b flex-col items-end justify-around ${
-        dark ? style.sidebarDark : style.sidebarLight
-      }`}
-    >
+    <div className={`h-1/3  flex border-b flex-col items-end justify-around bg-indigo-600  bg-opacity-70 dark:bg-opacity-90`}>
       <span
-        className=" w-24 h-24  rounded-full bg-gray-500 right-1/2 top-2  ml-4"
+        className=" w-24 h-24  rounded-full bg-gray-200 right-1/2 top-2  ml-4"
         style={{
           backgroundImage: `url(${profile.image && profile.image})`,
           backgroundPosition: "center",

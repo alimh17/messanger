@@ -6,10 +6,13 @@ import { FiSend } from "react-icons/fi";
 import { ShowChatAction } from "../../action/showChatAction";
 import { io } from "socket.io-client";
 
+import "./chat.css";
+
 let socket = io.connect("http://194.147.142.72:5000/");
 
 const Chat = () => {
   const showChat = useSelector((state) => state.showChat);
+  const current = useSelector((state) => state.currentChat);
   const dispatch = useDispatch();
 
   const [message, setMessage] = useState("");
@@ -43,7 +46,7 @@ const Chat = () => {
 
   return (
     <section
-      className={`absolute top-0 z-40  md:relative  w-full h-full  flex-col  bg-white  dark:bg-slate-800 transition-all md:transition-opacity duration-300 ease-linear}`}
+      className={`absolute top-0 z-40 w-full md:w-1/2 h-screen bg-white  dark:bg-slate-800 transition-all duration-300 ease-linear overflow-y-scroll chat`}
       style={
         showChat
           ? {
@@ -52,35 +55,22 @@ const Chat = () => {
           : { transform: "translateX(110%)" }
       }
     >
-      <ChatHeader />
+      <ChatHeader current={current} />
+
       <div
-        className="flex flex-col justify-end bg-gray-300 relative top-24 -z-10 overflow-y-scroll"
-        style={{ height: "83%" }}
+        className="  flex flex-col justify-end w-full  px-5 "
+        style={{ height: "85%" }}
       >
-        <div className=" w-full  grid ">
-          {messageList &&
-            messageList.map((m, i) => (
-              <span
-                key={i}
-                className="justify-self-start p-3 bg-indigo-500 text-white
-              rounded-l-xl rounded-b-xl text-xl mx-3 my-2 flex flex-col"
-              >
-                <p className="p-1">{m.msg}</p>
-                <p className="text-xs   text-left">{m.time}</p>
-              </span>
-            ))}
-        </div>
-        {/* <div className=" w-full  my-3 grid ">
-          <p className="justify-self-end p-3 bg-gray-400  rounded-r-xl rounded-b-xl  text-white text-xl mx-3">
-            سلام
-          </p>
-        </div> */}
+        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
+        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
+        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
+        <h3 className="p-5 bg-gray-400 text-3xl my-5 rounded-lg">slam</h3>
       </div>
 
       <form
-        className="w-full  flex  justify-center items-center absolute bottom-0"
+        style={{ height: "8%" }}
+        className="sticky bottom-0 w-full  flex  justify-center items-center py-3  bg-white"
         onSubmit={handleSubmit}
-        // style={{ height: "8%" }}
       >
         <button
           type="submit"

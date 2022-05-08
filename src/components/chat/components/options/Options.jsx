@@ -16,19 +16,19 @@ const Options = ({ show }) => {
       }
     >
       <ul>
-        <li className="text-base p-2 flex items-center">
+        <li className="text-base p-2 flex items-center cursor-pointer">
           <span>
             <BsFillCameraVideoFill className="mx-2 text-xl text-indigo-600" />
           </span>
           <p className="w-3/4">تماس تصویری </p>
         </li>
-        <li className="text-base p-2 flex items-center">
+        <li className="text-base p-2 flex items-center cursor-pointer">
           <span>
             <MdAddIcCall className="mx-2 text-xl text-indigo-600" />
           </span>
           <p className="w-3/4">تماس صوتی</p>
         </li>
-        <li className="text-base p-2 flex items-center">
+        <li className="text-base p-2 flex items-center cursor-pointer">
           <span>
             <TiUserDelete className="mx-2 text-xl text-indigo-600" />
           </span>

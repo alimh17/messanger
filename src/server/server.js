@@ -1,11 +1,12 @@
 import axios from "axios"
 import confing from '../config/config.json'
 
-const { URL, Login, Register, Users, Profile } = confing
-const token = localStorage.getItem("token")
+const { URL, Login, Register, Users, Profile, INIT } = confing
 
 
 axios.defaults.headers.common['Content-Type'] = "application/json; charset=utf-8"
+
+let token;
 
 export const registerRequest = async (values) => {
     return axios.post(`${URL + Register}`, values)
@@ -13,7 +14,10 @@ export const registerRequest = async (values) => {
 
 
 export const loginRequest = async (values) => {
-    return axios.post(`${URL + Login}`, values)
+    const res = await axios.post(`${URL + Login}`, values)
+    localStorage.setItem("token", res.data.data.token)
+    token = res.data.data.token
+    return res
 }
 
 
@@ -21,7 +25,7 @@ export const UsersRequest = async () => {
     try {
         return await axios.get(`${URL + Users}`, {
             headers: {
-                "Authorization": token
+                "Authorization": `${localStorage.getItem("token")}`
             }
         })
     } catch (error) {
@@ -29,27 +33,45 @@ export const UsersRequest = async () => {
     }
 }
 
+
 export const SettingRequest = async (data) => {
     try {
         return await axios.put(`${URL + Profile}`, data, {
             headers: {
-                "Authorization": token
+                "Authorization": `${localStorage.getItem("token")}`
             }
         })
     } catch (err) {
-        console.log(err)
+        console.log(err.response)
     }
 }
 
 
-export const getProfileRequest = async (t) => {
+export const initUserInformation = async () => {
     try {
-        return await axios.get(`${URL + Profile}`, {
+        const res = await axios({
+            url: `${URL + INIT}`,
+            method: "POST",
             headers: {
-                "Authorization": t
+                "Authorization": `${localStorage.getItem("token")}`
             }
         })
+        // console.log(res)
+        return res
     } catch (error) {
-        console.log(error)
+        console.log(error.response)
     }
 }
+
+
+// // export const getProfileRequest = async () => {
+// //     try {
+// //         return await axios.post(`${URL + Profile}`, {
+// //             headers: {
+// //                 "Authorization": token
+// //             }
+// //         })
+// //     } catch (error) {
+// //         console.log(error.response)
+// //     }
+// // }

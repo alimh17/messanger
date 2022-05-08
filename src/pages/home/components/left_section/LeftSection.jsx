@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import ChatList from "../../../../components/chatList/ChatList";
 import UserList from "./components/UserList";
 
 const LeftSection = () => {
@@ -31,6 +32,7 @@ const LeftSection = () => {
           />
         </div>
       </div>
+      <ChatList show={show} />
     </section>
   );
 };

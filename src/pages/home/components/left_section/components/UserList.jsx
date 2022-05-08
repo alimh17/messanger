@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import User from "../../../../../components/user/User";
 import { UsersRequest } from "../../../../../server/server";
 
+import "./user_list.css";
+import { generateColor } from "../../../../../utils/generateColor";
+
 const UserList = ({ show, setShow }) => {
   const [allUser, setAllUser] = useState([]);
   const [loading, setLoading] = useState(false);
-
 
   useEffect(() => {
     sendRequest();
@@ -21,20 +23,20 @@ const UserList = ({ show, setShow }) => {
 
   return (
     <div
-      className={`absolute right-0 h-screen bg-gray-200 z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease ${
+      className={`absolute right-0 h-screen overflow-y-scroll bg-gray-200  z-40  border-l border-l-gray-300 rounded-l-lg w-1/2 transition-all duration-200 ease userList ${
         show ? "translate-x-0" : "translate-x-full "
       }
     dark:bg-slate-800 dark:border-l-indigo-500
   `}
     >
-      <div className="w-full h-20 flex justify-between  items-center border-b border-b-gray-400 text-gray-400 dark:border-b-indigo-400 my-1">
+      <div className="sticky top-0 w-full h-20 flex justify-between  items-center border-b border-b-gray-400 text-gray-400 dark:border-b-indigo-400 my-1 bg-gray-200 dark:bg-gray-700 transition-all duration-200 ease-in">
         <div className="w-3/4 ">
           <input
             type="text"
             placeholder="جستجو"
-            className="w-full border-0 outline-none text-xl p-2 rounded-lg mr-2 px-10 bg-gray-300"
+            className="w-full border-0 outline-none text-xl p-2 rounded-lg mr-2 px-10 "
           />
-          <span className="absolute text-2xl top-7 right-3 text-gray-400">
+          <span className="absolute text-2xl top-8 right-3 text-gray-400">
             <BsSearch />
           </span>
         </div>
@@ -47,10 +49,14 @@ const UserList = ({ show, setShow }) => {
           </span>
         </div>
       </div>
-      {allUser &&
-        allUser.map((user, index) => (
-          <User user={user} key={index} loading={loading} />
-        ))}
+      <div
+        className="grid grid-rows-2 grid-cols-2 gap-2 "
+      >
+        {allUser &&
+          allUser.map((user, index) => (
+            <User user={user} key={index} loading={loading} />
+          ))}
+      </div>
     </div>
   );
 };
