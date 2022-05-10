@@ -6,7 +6,6 @@ const { URL, Login, Register, Users, Profile, INIT } = confing
 
 axios.defaults.headers.common['Content-Type'] = "application/json; charset=utf-8"
 
-let token;
 
 export const registerRequest = async (values) => {
     return axios.post(`${URL + Register}`, values)
@@ -16,7 +15,6 @@ export const registerRequest = async (values) => {
 export const loginRequest = async (values) => {
     const res = await axios.post(`${URL + Login}`, values)
     localStorage.setItem("token", res.data.data.token)
-    token = res.data.data.token
     return res
 }
 
@@ -56,7 +54,6 @@ export const initUserInformation = async () => {
                 "Authorization": `${localStorage.getItem("token")}`
             }
         })
-        // console.log(res)
         return res
     } catch (error) {
         console.log(error.response)

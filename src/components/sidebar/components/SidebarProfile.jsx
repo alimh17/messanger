@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
+import { MainContext } from "../../../layouts/context/MainContext";
 import { getProfileRequest } from "../../../server/server";
 
 const SidebarProfile = () => {
   const { isLoading, isError, data } = useQuery("user-info", getProfileRequest);
+
+  const { setShowProfileImage } = useContext(MainContext);
 
   return (
     <div className="flex justify-center items-center p-3">
@@ -24,6 +27,9 @@ const SidebarProfile = () => {
               className="w-10 h-10 rounded-full"
               alt="profile"
               src={data.user.profile.image}
+              onClick={() =>
+                setShowProfileImage([true, data.user.profile.image])
+              }
             />
           ) : (
             <div className="bg-indigo-800 w-10 h-10 rounded-full text-white flex justify-center items-center">

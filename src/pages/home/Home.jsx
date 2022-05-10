@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 
-import Chat from "../../components/chat/Chat";
 import ChatsNav from "./components/chats_nav/ChatsNav";
 import LeftSection from "./components/left_section/LeftSection";
 import RightSection from "./components/right_section/RightSection";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../components/loading/Loading";
 import ChatList from "../../components/chatList/ChatList";
-import { allUserAction } from "../../action/allUserAction";
+import WarningAlert from "../../components/alert/WarningAlert";
+import Chat from "../../components/chat/Chat";
 
 const Home = () => {
   const [active, setAcitve] = useState(false);
@@ -28,15 +26,21 @@ const Home = () => {
 
   return (
     <>
-      <section className={`${sidebar[4] && "blur-sm"} font-sans`}>
+      <section
+        className={`${
+          sidebar[4] && "blur-sm"
+        } font-sans dark:bg-slate-800 h-screen`}
+      >
         <ChatsNav active={active} setAcitve={setAcitve} />
         <Sidebar />
+        <WarningAlert />
         {!active && (
-          <div className="mt-32 md:hidden">
+          <div className="mt-32 md:hidden ">
             <ChatList />
             <Chat />
           </div>
         )}
+
         <div className="hidden  md:flex ">
           <RightSection />
           <LeftSection />

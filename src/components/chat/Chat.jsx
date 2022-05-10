@@ -21,7 +21,7 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit("message", message);
+    socket.emit(`${current._id}`, message);
     inputRef.current.value = "";
   };
 
@@ -33,13 +33,14 @@ const Chat = () => {
 
   useEffect(() => {
     const allMessage = [...messageList];
-    socket.on("message", (msg) => {
+    socket.on("newChatMessage", (msg) => {
       allMessage.push({
         msg,
         time: `${new Date().getMinutes().toString()} :
           ${new Date().getHours().toString()}
           `,
       });
+      console.log(msg);
       setMessageList(allMessage);
     });
   }, [messageList]);

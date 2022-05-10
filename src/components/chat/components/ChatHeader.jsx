@@ -1,17 +1,17 @@
 import { BsArrowLeft, BsThreeDotsVertical } from "react-icons/bs";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { MainContext } from "../../../layouts/context/MainContext";
 import _ from "lodash";
 
 import { HideChatAction } from "../../../action/showChatAction";
 import Options from "./options/Options";
 import { useDispatch } from "react-redux";
-import { generateColor } from "../../../utils/generateColor";
 
 const ChatHeader = ({ current }) => {
   const [showOption, setShowOption] = useState(false);
+  const { setShowProfileImage } = useContext(MainContext);
 
   const dispatch = useDispatch();
-  const color = generateColor();
 
   return (
     <>
@@ -38,12 +38,12 @@ const ChatHeader = ({ current }) => {
                 alt="profile"
                 src={current && current.profile.image}
                 className="w-16 h-16 rounded-full mx-3"
+                onClick={() =>
+                  setShowProfileImage([true, current.profile.image])
+                }
               />
             ) : (
-              <div
-                className="w-12 h-12 rounded-full flex justify-center items-center text-white"
-                style={{ backgroundColor: color }}
-              >
+              <div className="w-12 h-12 rounded-full flex justify-center items-center text-white bg-indigo-800">
                 {!_.isEmpty(current) &&
                   current.username.toUpperCase().slice(0, 1)}
               </div>

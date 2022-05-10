@@ -6,15 +6,11 @@ import {
   darkModeAction,
   lightModeAction,
 } from "../../../action/darkModeAction";
-import { useToasts } from "react-toast-notifications";
-import { useNavigate } from "react-router-dom";
+import { WarningAlertAction } from "../../../action/alertAction";
 
 const SidebarFooter = () => {
   const dark = useSelector((state) => state.dark);
-  const { addToast } = useToasts();
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col  justify-center items-center p-3">
@@ -31,14 +27,7 @@ const SidebarFooter = () => {
       )}
       <BiLogOutCircle
         className="text-4xl m-2  cursor-pointer text-rose-600"
-        onClick={() => {
-          navigate("/login", { replace: true });
-          localStorage.removeItem("token");
-          addToast("خروج موفقیت آمیز بود", {
-            appearance: "success",
-            autoDismiss: true,
-          });
-        }}
+        onClick={() => dispatch(WarningAlertAction())}
       />
     </div>
   );

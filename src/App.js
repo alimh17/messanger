@@ -10,7 +10,6 @@ import NotFoundPage from "./pages/404/NotFoundPage";
 import Register from './pages/auth/register/Register'
 import Login from "./pages/auth/login/Login";
 import Home from "./pages/home/Home";
-import Users from "./pages/users/Users";
 
 const App = () => {
   useEffect(() => { }, []);
@@ -26,7 +25,6 @@ const App = () => {
               <Route path="/" index element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/users" element={<Users />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </WithDarkMode>

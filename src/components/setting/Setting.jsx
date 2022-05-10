@@ -23,7 +23,8 @@ const Setting = () => {
         <LoadingSetting />
       ) : (
         <section
-          className={`fixed top-0 w-full h-screen flex  justify-center items-center z-40    setting `}
+          className={`fixed top-0 w-full h-screen flex  justify-center items-center    setting `}
+          style={{ zIndex: 60 }}
           onClick={(e) =>
             e.target.classList.contains("setting") &&
             dispatch(activeHomeAction())
@@ -55,7 +56,7 @@ const Setting = () => {
                 </div>
               )}
 
-              <span className="relative left-3/4 top-1/4 text-2xl md:text-3xl bg-indigo-700 rounded-full p-2 text-white">
+              <span className="relative left-3/4 top-1/4 text-2xl md:text-3xl bg-indigo-700 rounded-full p-2 text-white ">
                 <BiCamera />
               </span>
               <p className="md:text-2xl mx-4 text-white p-3">

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { currentChatAction } from "../../action/currentChatAction";
+import { ShowChatAction } from "../../action/showChatAction";
+import { MainContext } from "../../layouts/context/MainContext";
 
 const ChatList = ({ show }) => {
   const chats = useSelector((state) => state.personalChat);
   const dispatch = useDispatch();
+
+  const context = useContext(MainContext);
+  const { setShowProfileImage } = context;
+
+  const handleDispatch = (e, u) => {
+    if (e.target.classList.contains("user")) {
+      dispatch(currentChatAction(u));
+      dispatch(ShowChatAction());
+    }
+  };
 
   return (
     <section
@@ -27,19 +38,19 @@ const ChatList = ({ show }) => {
           {chats.map((u, i) => (
             <div
               key={i}
-              className="m-3 border-b-2 flex justify-between dark:border-b-indigo-400 w-full hover:bg-indigo-500 p-3 cursor-pointer rounded-sm hover:text-white transition-all ease-in duration-200 dark:hover:bg-white dark:hover:text-gray-900 dark:text-white"
-              onClick={() => dispatch(currentChatAction(u))}
+              className="m-3 border-b-2 flex justify-between dark:border-b-indigo-400 w-full hover:bg-indigo-500 p-3 cursor-pointer rounded-sm hover:text-white transition-all ease-in duration-200 dark:hover:bg-white dark:hover:text-gray-900 dark:text-white user"
+              onClick={(e) => handleDispatch(e, u)}
             >
-              <div className="p-3  flex items-center ">
-                <BsThreeDotsVertical className="text-indigo-800 mx-3" />
-                <p className="">{u.profile.name ? u.username : u.username}</p>
+              <div className="p-3  flex items-center">
+                <p>{u.profile.name ? u.username : u.username}</p>
               </div>
               <div>
                 {u.profile.image ? (
                   <img
-                    alt="profile image"
+                    alt="profile"
                     src={u.profile.image}
                     className="w-10 h-10 rounded-full"
+                    onClick={() => setShowProfileImage([true, u.profile.image])}
                   />
                 ) : (
                   <div className="bg-indigo-800 w-10 h-10 flex justify-center items-center text-white rounded-full">

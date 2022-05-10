@@ -2,8 +2,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import { Field, Form, Formik } from "formik";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { loginRequest } from "../../../server/server";
@@ -15,7 +14,10 @@ import "./login.css";
 const Login = () => {
   const { addToast } = useToasts();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.clear("token");
+  }, []);
 
   return (
     <div className="w-full h-screen flex justify-center items-center login">

@@ -1,5 +1,10 @@
-export const initChatAction = (user) => (dispatch, getState) => {
-    const current = { ...getState().currentChat }
+export const initCurrentChatAction = (user) => (dispatch, getState) => {
+    const personal = getState().personalChat
+    if (personal) {
+        const current = personal[0]
+        console.log(current)
+        // dispatch({ type: "INIT_CURRENT", payload: current })
+    }
 }
 
 export const currentChatAction = (user) => (dispatch, getState) => {

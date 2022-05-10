@@ -1,11 +1,9 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
-import _ from "lodash";
 import { getProfileRequest } from "../../../server/server";
 
 const HeadSidebar = () => {
-  const { isLoading, isError, data } = useQuery("user-info", getProfileRequest);
+  const { isLoading,  data } = useQuery("user-info", getProfileRequest);
 
   return (
     <div
@@ -18,7 +16,7 @@ const HeadSidebar = () => {
           className=" w-24 h-24  rounded-full bg-gray-200 right-1/2 top-2  ml-4"
           style={{
             backgroundImage: `url(${
-              data && data.user.profile.image ? data.user.profile.image : null
+              data && data.user.profile &&  data.user.profile.image ? data.user.profile.image : null
             })`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

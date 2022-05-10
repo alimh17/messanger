@@ -72,7 +72,7 @@ const FormComponent = ({ setShowImg, data }) => {
                     ? data.user.profile.image
                     : undefined
                 }
-                className="relative bottom-20 w-16  opacity-0  file "
+                className="relative bottom-20 w-16  opacity-0 cursor-pointer file "
                 onChange={(e) => {
                   e.target.files[0] &&
                     setShowImg(URL.createObjectURL(e.target.files[0]));
