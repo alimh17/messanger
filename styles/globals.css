@@ -1,26 +1,33 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@font-face {
+  font-family: "BYekan";
+  src: url("/fonts/BYekan.woff");
+  src: url("/fonts/Yekan.woff2");
+  src: url("/fonts/BYekan.ttf");
+  font-weight: 400;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  --pallet-1: #264653;
+  --pallet-2: #2a9d8f;
+  --pallet-3: #e9c46a;
+  --pallet-4: #f4a261;
+  --pallet-5: #e76f51;
+  --pallet-6: #118ab2;
+  --pallet-7: #001219;
+  --pallet-8: #e5e5e5;
+  --pallet-9: #dee2e6;
+  --pallet-10: #ced4da;
+  --pallet-11: #6c757d;
+  --white: #ffffff;
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body,
+html {
+  font-family: "BYekan", sans-serif !important;
 }

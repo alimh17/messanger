@@ -1,0 +1,102 @@
+.register {
+  background-image: url("/public/images/Login.jpg");
+  background-size: contain;
+  background-position: calc(20%, 30%);
+  background-clip: content-box;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  position: absolute;
+  right: 2rem;
+  top: auto;
+  width: 25rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  background-color: #ffffff60;
+  width: 100%;
+  height: 80%;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.formContainer {
+  color: var(--pallet-1);
+}
+.formContainer h2 {
+  font-weight: bold;
+}
+
+.SinginLink {
+  color: var(--pallet-2);
+  font-size: 12px;
+}
+
+.SinginLink > a {
+  color: var(--pallet-2);
+  margin: 0 2px;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  width: 60%;
+  margin-top: 2rem;
+}
+
+.form label {
+  font-size: 14px;
+  color: var(--pallet-1);
+}
+
+.form input {
+  padding-left: 2rem !important;
+  accent-color: var(--pallet-6) !important;
+  padding: 0.8rem;
+}
+.form input:focus {
+  border: 1px solid var(--pallet-6) !important;
+  outline: 0;
+}
+
+.form button[type="submit"] {
+  all: unset;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: var(--pallet-2);
+  width: 100%;
+  text-align: center;
+  color: var(--white);
+}
+
+.formIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 62%;
+  margin: 0 8px;
+  color: var(--pallet-6);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    position: unset;
+    margin: auto;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    position: unset;
+    margin: auto;
+    width: 99%;
+  }
+}
