@@ -1,9 +1,28 @@
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
+const Home = (props) => {
 
-const Home = () => {
+  const { data: session, status } = useSession()
+  const router = useRouter()
+
+  if (status === "loading") {
+    return (
+      <div>
+        Loading....
+      </div>
+    )
+  }
+  ``
   return (
     <>
-      <h1>Home</h1>
+      {status === "authenticated" ? (
+        <div>
+          Home
+        </div>
+      ) :
+        router.replace("/auth")
+      }
     </>
   )
 }

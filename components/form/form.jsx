@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdOutlineAlternateEmail } from "react-icons/md";
@@ -8,10 +9,13 @@ import Image from "next/image";
 import style from "/styles/register.module.css";
 import { useFormik } from "formik";
 import { validationRegister } from "utils/validation";
-import { Toast } from "utils/toast";
+import { resToast, Toast } from "utils/toast";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-const RegisterForm = () => {
+const Form = ({ type }) => {
   const [showPass, setShowPass] = useState(false);
+  const { push } = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -22,9 +26,37 @@ const RegisterForm = () => {
 
     validationSchema: validationRegister,
     onSubmit: (values) => {
-      console.log(values);
+      handleRequest(values);
     },
   });
+
+  const handleRequest = async (values) => {
+    if (type) {
+      try {
+        const res = await axios.post("/api/register", values);
+        console.log(res);
+      } catch (err) {
+        console.log(err.response);
+        resToast(err.response.data.message, toast, type);
+      }
+    } else {
+      const result = await signIn("credentials", {
+        redirect: false,
+        username: values.username,
+        password: values.password,
+      });
+      if (result.status === 200) {
+        push("/");
+      } else {
+        toast.error("اطلاعات وارد شده صحیح نمی باشد", {
+          style: {
+            backgroundColor: "#ced4da",
+            color: "#264653",
+          },
+        });
+      }
+    }
+  };
 
   return (
     <>
@@ -43,20 +75,22 @@ const RegisterForm = () => {
           />
           <FaUser className={style.formIcon} />
         </div>
-        <div className=" my-1  d-flex flex-column position-relative">
-          <label htmlFor="#email" className="text-right w-100 p-2">
-            ایمیل
-          </label>
-          <input
-            name="email"
-            id="email"
-            placeholder="example.com@"
-            className="border-0 outline-0 rounded"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-          />
-          <MdOutlineAlternateEmail className={style.formIcon} />
-        </div>
+        {type && (
+          <div className=" my-1  d-flex flex-column position-relative">
+            <label htmlFor="#email" className="text-right w-100 p-2">
+              ایمیل
+            </label>
+            <input
+              name="email"
+              id="email"
+              placeholder="example.com@"
+              className="border-0 outline-0 rounded"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+            />
+            <MdOutlineAlternateEmail className={style.formIcon} />
+          </div>
+        )}
         <div className=" my-1  d-flex flex-column position-relative">
           <label htmlFor="#password" className="text-right w-100 p-2">
             رمز عبور
@@ -83,8 +117,8 @@ const RegisterForm = () => {
           )}
         </div>
         <div className="d-flex justify-content-center my-5">
-          <button type="submit" onClick={() => Toast(formik, toast)}>
-            ثبت نام
+          <button type="submit" onClick={() => Toast(formik, toast, type)}>
+            {type ? "ثبت نام" : "ورود"}
           </button>
         </div>
         <div className="d-flex justify-content-between">
@@ -112,4 +146,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default Form;
