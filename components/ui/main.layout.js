@@ -10,7 +10,6 @@ const MainLayout = (props) => {
         const copyTabs = [...activeTab]
         copyTabs[0] = true
         setActiveTab(copyTabs)
-        console.log(activeTab)
     }
 
     useEffect(() => {

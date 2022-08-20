@@ -1,0 +1,31 @@
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+.searchBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.searchBox input {
+  width: 60%;
+  background-color: var(--pallet-8);
+  direction: rtl;
+  padding: 10px;
+  border-radius: 12px;
+  padding-right: 2.5rem;
+  color: var(--pallet-11);
+}
+
+.searchBox input:focus {
+  border: 1px solid var(--pallet-6);
+  outline: 0;
+}
+
+.timeBox {
+  color: var(--pallet-11);
+}

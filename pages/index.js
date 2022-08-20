@@ -1,3 +1,4 @@
+import Messages from 'components/messeges/messeges'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
@@ -17,8 +18,11 @@ const Home = (props) => {
   return (
     <>
       {status === "authenticated" ? (
-        <div>
-          Home
+        <div className="mr-20 h-screen flex overflow-hidden">
+          <div className='md:w-8/12'>
+            <h1>Home</h1>
+          </div>
+          <Messages />
         </div>
       ) :
         router.replace("/auth")

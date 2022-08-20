@@ -6,16 +6,18 @@ import { Toaster } from 'react-hot-toast'
 import style from '/styles/register.module.css'
 import image from 'public/images/Login.jpg'
 import Form from 'components/form/form'
-import { Router } from 'next/router'
+import { useRouter } from 'next/router'
 
 const Atuh = () => {
 
     const [typeFrom, setTypeForm] = useState(true);
     const { data: session, status } = useSession()
+    const router = useRouter()
+    console.log(router)
 
     return (
         <>
-            {status === "authenticated" ? Router.push("/") : (
+            {status === "authenticated" ? router.push("/") : (
                 <div
                     style={{
                         backgroundImage: `url(${image.src})`,

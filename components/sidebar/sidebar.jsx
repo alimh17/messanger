@@ -5,6 +5,7 @@ import { BsTelephone } from "react-icons/bs";
 import { TbUsers } from "react-icons/tb";
 import Image from "next/image";
 
+import profile from "public/images/profile.jpg";
 import styles from "./sidebar.module.css";
 
 const Sidebar = ({ active, setActive }) => {
@@ -69,15 +70,7 @@ const Sidebar = ({ active, setActive }) => {
         </li>
       </ul>
 
-      <div className="p-3">
-        {/* <Image
-          src="/public/images/Login.jpg"
-          width={10}
-          height={10}
-          layout="fill"
-        /> */}
-        Image
-      </div>
+      <Image src={profile} width={150} height={150} layout="responsive" />
     </div>
   );
 };
