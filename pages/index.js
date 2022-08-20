@@ -1,3 +1,4 @@
+import CurrentChat from 'components/currentChat/currentChat'
 import Messages from 'components/messeges/messeges'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -14,14 +15,12 @@ const Home = (props) => {
       </div>
     )
   }
-  ``
+
   return (
     <>
       {status === "authenticated" ? (
-        <div className="mr-20 h-screen flex overflow-hidden">
-          <div className='md:w-8/12'>
-            <h1>Home</h1>
-          </div>
+        <div className="md:mr-20 h-screen flex overflow-hidden">
+          <CurrentChat />
           <Messages />
         </div>
       ) :

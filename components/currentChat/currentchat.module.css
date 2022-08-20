@@ -1,0 +1,11 @@
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 10px solid var(--pallet-8);
+  position: absolute;
+  left: -10px;
+  bottom: 20%;
+  border-radius: 0 0 3px 0;
+}

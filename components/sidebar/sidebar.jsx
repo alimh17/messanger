@@ -16,7 +16,7 @@ const Sidebar = ({ active, setActive }) => {
   };
 
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} hidden md:flex`}>
       <ul>
         <li
           onClick={() => handleActiveTab(0)}
