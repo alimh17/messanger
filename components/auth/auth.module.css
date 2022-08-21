@@ -38,6 +38,7 @@
 .SinginLink {
   color: var(--pallet-2);
   font-size: 12px;
+  display: flex;
 }
 
 .SinginLink > a {

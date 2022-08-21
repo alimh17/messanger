@@ -8,7 +8,11 @@ const MainLayout = (props) => {
 
     const activeHomeTab = () => {
         const copyTabs = [...activeTab]
-        copyTabs[0] = true
+        if (router.pathname === "/") {
+            copyTabs[0] = true
+        } else if (router.pathname === "/setting") {
+            copyTabs[4] = true
+        }
         setActiveTab(copyTabs)
     }
 
@@ -17,10 +21,10 @@ const MainLayout = (props) => {
     }, [])
 
     return (
-        <div>
+        <>
             {router.pathname !== "/auth" && <Sidebar active={activeTab} setActive={setActiveTab} />}
             {props.children}
-        </div>
+        </>
     )
 }
 

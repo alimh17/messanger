@@ -25,16 +25,17 @@ const CurrentChat = () => {
             <p className="p-3">کجایی؟</p>
           </div>
           <div
-            style={{
-              width: 0,
-              height: 0,
-              borderTop: "5px solid transparent",
-              borderBottom: " 5px solid transparent",
-              borderRight: "10px solid var(--pallet-8)",
-              position: "absolute",
-              left: "-10px",
-              bottom: "20%",
-            }}
+            className={`${styles.triangle}`}
+            // style={{
+            //   width: 0,
+            //   height: 0,
+            //   borderTop: "5px solid transparent",
+            //   borderBottom: " 5px solid transparent",
+            //   borderRight: "10px solid var(--pallet-8)",
+            //   position: "absolute",
+            //   left: "-10px",
+            //   bottom: "20%",
+            // }}
           ></div>
         </div>
       </div>

@@ -10,7 +10,7 @@ import styles from "./messages.module.css";
 
 const Messages = () => {
   return (
-    <section className={`${styles.messages}h-screen md:w-4/12 hidden md:flex flex-col items-center font-sans overflow-y-scroll`}>
+    <section className={`${styles.messages} h-screen md:w-4/12 hidden md:flex flex-col items-center font-sans overflow-y-scroll`}>
       <div className="w-full flex flex-col justify-center items-center sticky top-0 bg-white">
         <h2 className="text-2xl p-3 font-bold text-gray-500">پیام ها</h2>
         <div className={`${styles.searchBox}`}>

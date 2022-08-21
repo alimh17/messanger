@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -6,12 +7,12 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 
-import style from "/styles/register.module.css";
 import { useFormik } from "formik";
 import { validationRegister } from "utils/validation";
 import { resToast, Toast } from "utils/toast";
-import axios from "axios";
 import { useRouter } from "next/router";
+
+import style from "../auth.module.css";
 
 const Form = ({ type }) => {
   const [showPass, setShowPass] = useState(false);
@@ -33,7 +34,7 @@ const Form = ({ type }) => {
   const handleRequest = async (values) => {
     if (type) {
       try {
-        const res = await axios.post("/api/register", values);
+        const res = await axios.post("/api/auth", values);
         console.log(res);
       } catch (err) {
         console.log(err.response);
@@ -41,13 +42,11 @@ const Form = ({ type }) => {
       }
     } else {
       const result = await signIn("credentials", {
-        redirect: false,
         username: values.username,
         password: values.password,
+        callbackUrl: "/",
       });
-      if (result.status === 200) {
-        push("/");
-      } else {
+      if (result.status !== 200) {
         toast.error("اطلاعات وارد شده صحیح نمی باشد", {
           style: {
             backgroundColor: "#ced4da",
@@ -61,7 +60,7 @@ const Form = ({ type }) => {
   return (
     <>
       <form dir="rtl" className={style.form} onSubmit={formik.handleSubmit}>
-        <div className=" my-1  d-flex flex-column position-relative">
+        <div className=" my-1  flex flex-col relative">
           <label htmlFor="#username" className="text-right w-100 p-2">
             نام کاربری
           </label>
@@ -76,7 +75,7 @@ const Form = ({ type }) => {
           <FaUser className={style.formIcon} />
         </div>
         {type && (
-          <div className=" my-1  d-flex flex-column position-relative">
+          <div className=" my-1 flex flex-col relative">
             <label htmlFor="#email" className="text-right w-100 p-2">
               ایمیل
             </label>
@@ -91,7 +90,7 @@ const Form = ({ type }) => {
             <MdOutlineAlternateEmail className={style.formIcon} />
           </div>
         )}
-        <div className=" my-1  d-flex flex-column position-relative">
+        <div className=" my-1 flex flex-col relative">
           <label htmlFor="#password" className="text-right w-100 p-2">
             رمز عبور
           </label>
@@ -116,12 +115,12 @@ const Form = ({ type }) => {
             />
           )}
         </div>
-        <div className="d-flex justify-content-center my-5">
+        <div className="flex justify-center my-5">
           <button type="submit" onClick={() => Toast(formik, toast, type)}>
             {type ? "ثبت نام" : "ورود"}
           </button>
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="flex justify-between mt-3">
           <Image
             className="rounded"
             src="/images/instagram.png"

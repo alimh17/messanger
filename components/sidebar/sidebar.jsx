@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import profile from "public/images/profile.jpg";
 import styles from "./sidebar.module.css";
+import Link from "next/link";
 
 const Sidebar = ({ active, setActive }) => {
   const handleActiveTab = (index) => {
@@ -26,7 +27,11 @@ const Sidebar = ({ active, setActive }) => {
               : { backgroundColor: "#ffffff" }
           }
         >
-          <RiHomeLine />
+          <Link href="/">
+            <a>
+              <RiHomeLine />
+            </a>
+          </Link>
         </li>
         <li
           onClick={() => handleActiveTab(1)}
@@ -66,10 +71,13 @@ const Sidebar = ({ active, setActive }) => {
               : { backgroundColor: "#ffffff" }
           }
         >
-          <IoSettingsOutline />
+          <Link href="/setting">
+            <a>
+              <IoSettingsOutline />
+            </a>
+          </Link>
         </li>
       </ul>
-
       <Image src={profile} width={150} height={150} layout="responsive" />
     </div>
   );
