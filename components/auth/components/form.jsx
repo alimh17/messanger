@@ -14,9 +14,10 @@ import { useRouter } from "next/router";
 
 import style from "../auth.module.css";
 
-const Form = ({ type }) => {
+const Form = ({ type, setType }) => {
   const [showPass, setShowPass] = useState(false);
-  const { push } = useRouter();
+
+  const Router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -32,29 +33,40 @@ const Form = ({ type }) => {
   });
 
   const handleRequest = async (values) => {
-    if (type) {
-      try {
-        const res = await axios.post("/api/auth", values);
-        console.log(res);
-      } catch (err) {
-        console.log(err.response);
-        resToast(err.response.data.message, toast, type);
-      }
-    } else {
-      const result = await signIn("credentials", {
-        username: values.username,
-        password: values.password,
-        callbackUrl: "/",
-      });
-      if (result.status !== 200) {
-        toast.error("اطلاعات وارد شده صحیح نمی باشد", {
-          style: {
-            backgroundColor: "#ced4da",
-            color: "#264653",
-          },
-        });
-      }
-    }
+    // if (type) {
+    //   try {
+    //     //* register form
+    //     const res = await axios.post("/api/auth", values);
+    //     console.log(res);
+    //     if (res.status === 201) {
+    //       resToast("ثبت نام موفقیت آمیز بود", toast, type);
+    //       setType(!type);
+    //     }
+    //   } catch (err) {
+    //     console.log(err);
+    //     resToast(err.response.data.message, toast, type);
+    //   }
+    // } else {
+    //   //* Login form
+    //   await signIn("credentials", {
+    //     username: values.username,
+    //     password: values.password,
+    //     callbackUrl: "/",
+    //   });
+    //   const res = await signIn("credentials", {
+    //     redirect: false,
+    //     password: "password",
+    //   });
+    //   console.log(res);
+    // if (result.status !== 200) {
+    //   toast.error("اطلاعات وارد شده صحیح نمی باشد", {
+    //     style: {
+    //       backgroundColor: "#ced4da",
+    //       color: "#264653",
+    //     },
+    //   });
+    // }
+    // }
   };
 
   return (
@@ -128,12 +140,16 @@ const Form = ({ type }) => {
             height={50}
           />
           <Image
+            onClick={() => {
+              signIn("google");
+            }}
             className="rounded"
             src="/images/google.png"
             width={50}
             height={50}
           />
           <Image
+            onClick={() => signIn("github", { callbackUrl: "/" })}
             className="rounded"
             src="/images/linkedin.png"
             width={50}

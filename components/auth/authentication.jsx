@@ -43,7 +43,7 @@ const Authentication = () => {
                   {typeFrom ? "حساب کاربری داید؟" : "حساب کاربری نداید؟"}
                 </p>
               </div>
-              <Form type={typeFrom} />
+              <Form type={typeFrom} setType={setTypeForm}/>
               <Toaster position="top-left" />
             </div>
           </div>
