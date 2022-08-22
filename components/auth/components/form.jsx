@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import Image from "next/image";
 
 import { useFormik } from "formik";
 import { validationRegister } from "utils/validation";
@@ -13,6 +12,7 @@ import { resToast, Toast } from "utils/toast";
 import { useRouter } from "next/router";
 
 import style from "../auth.module.css";
+import Strategy from "./strategy";
 
 const Form = ({ type, setType }) => {
   const [showPass, setShowPass] = useState(false);
@@ -132,30 +132,8 @@ const Form = ({ type, setType }) => {
             {type ? "ثبت نام" : "ورود"}
           </button>
         </div>
-        <div className="flex justify-between mt-3">
-          <Image
-            className="rounded"
-            src="/images/instagram.png"
-            width={50}
-            height={50}
-          />
-          <Image
-            onClick={() => {
-              signIn("google");
-            }}
-            className="rounded"
-            src="/images/google.png"
-            width={50}
-            height={50}
-          />
-          <Image
-            onClick={() => signIn("github", { callbackUrl: "/" })}
-            className="rounded"
-            src="/images/linkedin.png"
-            width={50}
-            height={50}
-          />
-        </div>
+        <Strategy />
+       
       </form>
     </>
   );
