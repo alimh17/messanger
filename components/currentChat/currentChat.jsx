@@ -2,8 +2,6 @@ import React from "react";
 import ChatForm from "./components/chatForm";
 import Topbar from "./components/topbar";
 
-import styles from "./currentChat.module.css";
-
 const CurrentChat = () => {
   return (
     <div className="w-full md:w-8/12  h-screen font-sans overflow-y-scroll">
@@ -25,8 +23,17 @@ const CurrentChat = () => {
             <p className="p-3">کجایی؟</p>
           </div>
           <div
-            className={`${styles.triangle}`}
-            
+            style={{
+              width: 0,
+              height: 0,
+              borderTop: "5px solid transparent",
+              borderBottom: "5px solid transparent",
+              borderRight: "10px solid var(--pallet-8)",
+              position: "absolute",
+              left: "-10px",
+              bottom: " 20%",
+              borderRadius: " 0 0 3px 0",
+            }}
           ></div>
         </div>
       </div>
