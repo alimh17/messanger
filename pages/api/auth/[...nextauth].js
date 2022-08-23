@@ -27,29 +27,31 @@ export default NextAuth({
                 return { username: user.username }
             }
         }),
-        GitHubProvider({
-            clientId: process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        }),
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            authorization: {
-                params: {
-                    prompt: "consent",
-                    access_type: "offline",
-                    response_type: "code"
-                }
-            }
-        }),
-        InstagramProvider({
-            clientId: process.env.INSTAGRAM_CLIENT_ID,
-            clientSecret: process.env.INSTAGRAM_CLIENT_SECRET
-        })
+        // GitHubProvider({
+        //     clientId: process.env.GITHUB_CLIENT_ID,
+        //     clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        // }),
+        // GoogleProvider({
+        //     clientId: process.env.GOOGLE_CLIENT_ID,
+        //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        //     authorization: {
+        //         params: {
+        //             prompt: "consent",
+        //             access_type: "offline",
+        //             response_type: "code"
+        //         }
+        //     }
+        // }),
+        // InstagramProvider({
+        //     clientId: process.env.INSTAGRAM_CLIENT_ID,
+        //     clientSecret: process.env.INSTAGRAM_CLIENT_SECRET
+        // })
     ],
+
     session: {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60 // 30 days
     },
     adapter: MongoDBAdapter(clientPromise),
+
 })

@@ -27,7 +27,8 @@ const handler = async (req, res) => {
             const user = new User({
                 username,
                 email,
-                password: hashPass
+                password: hashPass,
+                image: ""
             })
             await user.save()
             return res.status(201).json({ message: "succefuly!!!" })

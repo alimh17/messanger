@@ -33,40 +33,40 @@ const Form = ({ type, setType }) => {
   });
 
   const handleRequest = async (values) => {
-    // if (type) {
-    //   try {
-    //     //* register form
-    //     const res = await axios.post("/api/auth", values);
-    //     console.log(res);
-    //     if (res.status === 201) {
-    //       resToast("ثبت نام موفقیت آمیز بود", toast, type);
-    //       setType(!type);
-    //     }
-    //   } catch (err) {
-    //     console.log(err);
-    //     resToast(err.response.data.message, toast, type);
-    //   }
-    // } else {
-    //   //* Login form
-    //   await signIn("credentials", {
-    //     username: values.username,
-    //     password: values.password,
-    //     callbackUrl: "/",
-    //   });
-    //   const res = await signIn("credentials", {
-    //     redirect: false,
-    //     password: "password",
-    //   });
-    //   console.log(res);
-    // if (result.status !== 200) {
-    //   toast.error("اطلاعات وارد شده صحیح نمی باشد", {
-    //     style: {
-    //       backgroundColor: "#ced4da",
-    //       color: "#264653",
-    //     },
-    //   });
-    // }
-    // }
+    if (type) {
+      try {
+        //* register form
+        const res = await axios.post("/api/auth", values);
+        console.log(res);
+        if (res.status === 201) {
+          resToast("ثبت نام موفقیت آمیز بود", toast, type);
+          setType(!type);
+        }
+      } catch (err) {
+        console.log(err);
+        resToast(err.response.data.message, toast, type);
+      }
+    } else {
+      //* Login form
+      await signIn("credentials", {
+        username: values.username,
+        password: values.password,
+        callbackUrl: "/",
+      });
+      const res = await signIn("credentials", {
+        redirect: false,
+        password: "password",
+      });
+      console.log(res);
+      if (result.status !== 200) {
+        toast.error("اطلاعات وارد شده صحیح نمی باشد", {
+          style: {
+            backgroundColor: "#ced4da",
+            color: "#264653",
+          },
+        });
+      }
+    }
   };
 
   return (
@@ -132,8 +132,7 @@ const Form = ({ type, setType }) => {
             {type ? "ثبت نام" : "ورود"}
           </button>
         </div>
-        <Strategy />
-       
+        {/* <Strategy /> */}
       </form>
     </>
   );
