@@ -48,24 +48,24 @@ const Form = ({ type, setType }) => {
       }
     } else {
       //* Login form
+      // console.log(values)
       await signIn("credentials", {
         username: values.username,
         password: values.password,
         callbackUrl: "/",
       });
-      const res = await signIn("credentials", {
-        redirect: false,
-        password: "password",
-      });
-      console.log(res);
-      if (result.status !== 200) {
-        toast.error("اطلاعات وارد شده صحیح نمی باشد", {
-          style: {
-            backgroundColor: "#ced4da",
-            color: "#264653",
-          },
-        });
-      }
+      // const res = await signIn("credentials", {
+      //   redirect: false,
+      //   password: "password",
+      // });
+      // if (result.status !== 200) {
+      //   toast.error("اطلاعات وارد شده صحیح نمی باشد", {
+      //     style: {
+      //       backgroundColor: "#ced4da",
+      //       color: "#264653",
+      //     },
+      //   });
+      // }
     }
   };
 

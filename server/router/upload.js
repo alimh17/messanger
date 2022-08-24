@@ -10,18 +10,23 @@ router.post("/upload", async (req, res) => {
     const image = req.files.profile
     const root = `${path.join(__dirname, `../public/uploads/${image.name}`)}`
 
+
     const user = await User.findOne({ email })
+    console.log(user)
 
     image.mv(root, (err) => {
         if (err) {
             res.status(500).send({})
             console.log(err);
         } else {
-            user.image = `/uploads/${image.name}`
-            user.save()
-            res.status(200).json({ message: "تصویر پروفایل به روز رسانی شد", data: user.image })
+            if (user) {
+                user.image = `/uploads/${image.name}`
+                user.save()
+            }
+            res.status(200).json({ message: "تصویر پروفایل به روز رسانی شد", data: { email: user.email, image: user.image } })
         }
     })
+    // user.image = `/uploads/${image.name}`
 
 })
 

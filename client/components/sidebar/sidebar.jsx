@@ -61,7 +61,11 @@ const Sidebar = ({ active, setActive }) => {
               : { backgroundColor: "#ffffff" }
           }
         >
-          <TbUsers />
+          <Link href="/users">
+            <a>
+              <TbUsers />
+            </a>
+          </Link>
         </li>
         <li
           onClick={() => handleActiveTab(4)}

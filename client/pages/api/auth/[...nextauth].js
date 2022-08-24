@@ -1,29 +1,32 @@
 import NextAuth from "next-auth";
-import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from "next-auth/providers/github"
 import InstagramProvider from "next-auth/providers/instagram"
-import User from "db/model/user";
 import { compare } from "bcryptjs";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import User from "db/model/user";
 import clientPromise from "utils/mongodb";
+import connectDB from "db/db";
 
 export default NextAuth({
     providers: [
         CredentialsProvider({
+
             async authorize(credentials, req) {
-                const user = await User.findOne({ username: credentials.username })
+                await connectDB()
+                const { username } = credentials
+                const user = await User.findOne({ username })
                 if (!user) {
                     throw new Error("اطلاعات وارد شده صحیح نمی باشد")
                 }
 
-                //* check password
+                // //* check password
                 const validPass = await compare(credentials.password, user.password)
 
                 if (!validPass) {
                     throw new Error("اطلاعات وارد شده صحیح نمی باشد")
                 }
-                console.log(user);
 
                 return { email: user.email, image: user.image }
             }
