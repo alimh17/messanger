@@ -1,17 +1,9 @@
+import { combineReducers } from "redux";
+import userInfoReducer from "./userInfo";
 
-const init = {
-    email: "",
-    image: ""
-}
-
-const rootReducer = (state = init, action) => {
-    switch (action.type) {
-        case "INITIAL": return action.payload
-        case "UPDATE_IMAGE_PROFILE": return action.payload
-        default: return state
-    }
-}
-
+const rootReducer = combineReducers({
+    user : userInfoReducer,
+})
 
 
 export default rootReducer

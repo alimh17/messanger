@@ -4,7 +4,7 @@ import Topbar from "./components/topbar";
 
 const CurrentChat = () => {
   return (
-    <div className="w-full md:w-8/12  h-screen font-sans overflow-y-scroll">
+    <div className="w-full md:w-8/12  h-screen font-sans overflow-y-scroll relative">
       <Topbar />
       <div className="flex p-3 items-start  w-full md:w-1/2">
         <div className="mr-2">

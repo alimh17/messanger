@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 5000
 
 //* ------------------ Router ------------------
 app.use("/", require('./router/upload'))
+app.use("/api", require('./router/allUsers'))
 
 
 connectDB()

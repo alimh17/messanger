@@ -1,8 +1,6 @@
 import React from 'react'
-import { signOut } from "next-auth/react"
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
-import { updateImageProfile } from 'store/action/init_user';
 import Image from 'next/image';
 import ChangePass from 'components/setting/changepass';
 import Logout from 'components/setting/logout';
@@ -10,9 +8,6 @@ import UserInfo from 'components/setting/userInfo';
 import ChatBackground from 'components/setting/chatBackground';
 
 const Setting = () => {
-
-  
-
     return (
         <div className='font-sans md:mr-20 text-right'>
             <h2 className='text-2xl font-bold p-3 my-5'>تنظیمات کاربری</h2>

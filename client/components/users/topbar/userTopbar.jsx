@@ -1,9 +1,8 @@
-import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const UserTopbar = ({ active, setActive }) => {
-  const user = useSelector((state) => state);
+  const user = useSelector((state) => state.user);
 
   const handleActiveTab = () => {
     const copyActive = [...active];
@@ -35,20 +34,22 @@ const UserTopbar = ({ active, setActive }) => {
         />
       </div>
       <div className="flex gap-3">
-        <Button
-          variant={active[0] ? "contained" : "outlined"}
-          className="mx-3"
+        <button
+          className={`mx-3 py-2 px-4 rounded-md ${
+            active[0] ? "bg-blue-400 text-white" : "bg-gray-300 border"
+          }`}
           onClick={() => handleClickTabButtons(0)}
         >
           دوستان
-        </Button>
-        <Button
-          variant={active[1] ? "contained" : "outlined"}
-          className="mx-3"
+        </button>
+        <button
+          className={`mx-3 py-2 px-4 rounded-md ${
+            active[1] ? "bg-blue-400 text-white" : "bg-gray-300 border"
+          }`}
           onClick={() => handleClickTabButtons(1)}
         >
           کاربران
-        </Button>
+        </button>
       </div>
     </div>
   );

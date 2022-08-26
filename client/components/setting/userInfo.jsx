@@ -1,9 +1,8 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { updateImageProfile } from "store/action/init_user";
-
 
 const UserInfo = () => {
   const state = useSelector((state) => state);
@@ -13,7 +12,7 @@ const UserInfo = () => {
     const file = e.target.files[0];
     const data = new FormData();
     data.append("profile", file);
-    data.append("email", state.email);
+    data.append("email", state.user.email);
     try {
       const response = await axios.post(`http://localhost:5000/upload`, data);
       toast.success(response.data.message, {
@@ -52,7 +51,7 @@ const UserInfo = () => {
           بارگذاری تصویر جدید
         </button>
         <img
-          src={`http://localhost:5000${state.image}`}
+          src={`http://localhost:5000${state.user.image}`}
           alt="profile"
           className="w-12 h-12 rounded-full"
         />

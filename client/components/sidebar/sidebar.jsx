@@ -8,6 +8,7 @@ import Image from "next/image";
 import profile from "public/images/profile.jpg";
 import styles from "./sidebar.module.css";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ active, setActive }) => {
   const handleActiveTab = (index) => {
@@ -16,8 +17,10 @@ const Sidebar = ({ active, setActive }) => {
     setActive(copyActive);
   };
 
+  const state = useSelector((state) => state);
+
   return (
-    <div className={`${styles.sidebar} hidden md:flex`}>
+    <div className={`${styles.sidebar} hidden md:flex border-l`}>
       <ul>
         <li
           onClick={() => handleActiveTab(0)}
@@ -82,7 +85,11 @@ const Sidebar = ({ active, setActive }) => {
           </Link>
         </li>
       </ul>
-      <Image src={profile} width={150} height={150} layout="responsive" />
+      <img
+        src={`http://localhost:5000${state.user.image}`}
+        alt="profile"
+        className="w-20 h-20 rounded-full mx-2"
+      />
     </div>
   );
 };

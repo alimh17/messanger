@@ -9,8 +9,10 @@ const MainLayout = (props) => {
     const activeHomeTab = () => {
         const copyTabs = [...activeTab]
         if (router.pathname === "/") {
+            copyTabs.fill(false)
             copyTabs[0] = true
         } else if (router.pathname === "/setting") {
+            copyTabs.fill(false)
             copyTabs[4] = true
         }
         setActiveTab(copyTabs)
@@ -18,7 +20,7 @@ const MainLayout = (props) => {
 
     useEffect(() => {
         activeHomeTab()
-    }, [])
+    }, [router.pathname])
 
     return (
         <>
