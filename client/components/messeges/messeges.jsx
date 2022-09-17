@@ -1,16 +1,17 @@
 import React from "react";
 import { IoCheckmarkDone } from "react-icons/io5";
 import { BiChat } from "react-icons/bi";
-import Image from "next/image";
 
 import styles from "./messages.module.css";
 import HeadMessages from "./components/head_messages";
 import Pinned from "./components/pinned";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { currentChatAction } from "store/action/currentChatAction";
 
 const Messages = () => {
   const state = useSelector((state) => state);
   const { chatList } = state.user;
+  const dispatch = useDispatch();
 
   return (
     <section
@@ -30,6 +31,7 @@ const Messages = () => {
                 <li
                   className="flex h-20 items-center justify-between"
                   key={user._id}
+                  onClick={() => dispatch(currentChatAction(user))}
                 >
                   <div className="flex">
                     <img

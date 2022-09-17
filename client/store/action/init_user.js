@@ -1,6 +1,7 @@
 import { ADD_USER_TO_MESSAGE_LIST, INITIAL, UPDATE_IMAGE_PROFILE } from "store/type/types"
 
 export const initUser = (data) => async (dispatch) => {
+    console.log(data);
     if (data) {
         dispatch({ type: INITIAL, payload: data })
     }

@@ -16,9 +16,9 @@ const RouteGourd = (props) => {
   };
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/auth");
-    }
+    // if (status === "unauthenticated") {
+    //   router.push("/auth");
+    // }
     if (data) {
       initialData(data);
     }

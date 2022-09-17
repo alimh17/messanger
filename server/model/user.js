@@ -17,7 +17,8 @@ const userSchema = mongoose.Schema({
     image: {
         type: String
     },
-    chatList: []
+    chatList: [],
+    messagesList: []
 
 })
 

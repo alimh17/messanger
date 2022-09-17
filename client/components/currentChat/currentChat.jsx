@@ -1,44 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
+import { useSelector } from "react-redux";
+import { io } from "socket.io-client";
 import ChatForm from "./components/chatForm";
 import Topbar from "./components/topbar";
+import MessagesList from "./components/messagesList";
+import axios from "axios";
+import { useMemo } from "react";
+
+const socket = io("http://localhost:5000");
+
+const initMessage = {
+  id: "",
+  time: "",
+  content: "",
+  auther: "",
+  to: "",
+};
 
 const CurrentChat = () => {
-  return (
-    <div className="w-full md:w-8/12  h-screen font-sans overflow-y-scroll relative">
-      <Topbar />
-      <div className="flex p-3 items-start  w-full md:w-1/2">
-        <div className="mr-2">
-          <img
-            src="/images/profile.jpg"
-            alt="profile"
-            className="w-12 h-12 rounded-full"
-          />
-        </div>
-        <div className="w-full  rounded-lg justify-between bg-gray-300 relative">
-          <div className="flex  text-sm justify-between p-3 w-full">
-            <h2 className="font-bold">Alimh</h2>
-            <p>16:12</p>
-          </div>
-          <div className="text-right ">
-            <p className="p-3">کجایی؟</p>
-          </div>
-          <div
-            style={{
-              width: 0,
-              height: 0,
-              borderTop: "5px solid transparent",
-              borderBottom: "5px solid transparent",
-              borderRight: "10px solid var(--pallet-8)",
-              position: "absolute",
-              left: "-10px",
-              bottom: " 20%",
-              borderRadius: " 0 0 3px 0",
-            }}
-          ></div>
-        </div>
-      </div>
+  const [message, setMessage] = useState(initMessage);
+  const [messages, setMessages] = useState([]);
 
-      <ChatForm />
+  const current = useSelector((state) => state.currentChat);
+  const user = useSelector((state) => state.user);
+
+  const handleGetMessages = async () => {
+    const res = await axios.post("http://localhost:5000/api/current_chat", {
+      data: { user, current },
+    });
+
+    const allMessages = res.data.data.map((item) => {
+      if (current._id === item.content.id || user.id === item.content.id) {
+        return item.content;
+      } else {
+        setMessages([]);
+      }
+    });
+
+    setMessages(allMessages);
+  };
+
+  // useMemo(() => {
+  //   handleGetMessages();
+  // }, [current]);
+
+  useEffect(() => {
+    setMessage({
+      ...message,
+      auther: user.username,
+      id: user.id,
+      to: current._id,
+    });
+    handleGetMessages();
+  }, [current]);
+
+  useEffect(() => {
+    socket.on("onMessage", (data) => {
+      setMessages((msg) => [...msg, data]);
+    });
+  }, [socket]);
+
+  return (
+    <div className="w-full md:w-8/12  h-screen font-sans overflow-y-scroll relative ">
+      <Topbar />
+      <MessagesList messages={messages} user={user} current={current} />
+      <ChatForm
+        msg={message}
+        setMsg={setMessage}
+        msgs={messages}
+        setMsgs={setMessages}
+        socket={socket}
+      />
     </div>
   );
 };

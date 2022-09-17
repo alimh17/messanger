@@ -1,8 +1,20 @@
 import CurrentChat from 'components/currentChat/currentChat'
 import Messages from 'components/messeges/messeges'
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { currentChatAction } from 'store/action/currentChatAction'
 
 const Home = () => {
+
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+
+  useEffect(() => {
+    if (user) {
+      dispatch(currentChatAction(user.chatList[0]))
+    }
+  }, [user])
 
   return (
     <>

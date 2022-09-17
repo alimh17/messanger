@@ -17,8 +17,8 @@ const userSchema = Schema({
     image: {
         type: String
     },
-    chatList: []
-
+    chatList: [],
+    messagesList: []
 })
 
 
