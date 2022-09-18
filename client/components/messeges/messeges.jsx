@@ -29,7 +29,9 @@ const Messages = () => {
             {chatList &&
               chatList.map((user) => (
                 <li
-                  className="flex h-20 items-center justify-between"
+                  className={`flex h-20 items-center justify-between cursor-pointer  p-3 rounded-md ${
+                    state.currentChat._id === user._id ? "bg-blue-300" : ""
+                  } `}
                   key={user._id}
                   onClick={() => dispatch(currentChatAction(user))}
                 >

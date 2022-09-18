@@ -13,7 +13,7 @@ const Pinned = () => {
       </div>
       <div className="flex w-full my-4 ">
         <ul className="flex flex-col w-full">
-          <li className="flex h-20 items-center justify-between">
+          <li className="flex h-20 items-center justify-between  cursor-pointer">
             <div className="flex">
               <img
                 src="images/profile.jpg"
@@ -29,7 +29,7 @@ const Pinned = () => {
               <IoCheckmarkDone style={{ color: "var(--pallet-2)" }} />
             </div>
           </li>
-          <li className="flex h-20 items-center justify-between">
+          <li className="flex h-20 items-center justify-between cursor-pointer">
             <div className="flex">
               <img
                 src="images/profile.jpg"

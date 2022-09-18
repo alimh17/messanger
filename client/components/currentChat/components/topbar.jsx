@@ -1,9 +1,25 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { FiMenu } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { FiMenu, FiTrash } from "react-icons/fi";
+import { useState } from "react";
+import axios from "axios";
+import { removeUserOfChatList } from "store/action/init_user";
 
 const Topbar = () => {
+  const [option, setOption] = useState(false);
   const chat = useSelector((state) => state.currentChat);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleDeleteChat = async () => {
+    const res = await axios.post("http://localhost:5000/api/delete_chat", {
+      data: { chat, user },
+    });
+    if (res.status === 200) {
+      dispatch(removeUserOfChatList(chat));
+    }
+    setOption(!option);
+  };
 
   return (
     <nav className="bg-white sticky top-0 w-full z-10 border-b">
@@ -17,10 +33,24 @@ const Topbar = () => {
           />
           <p className="text-bold">{chat.username}</p>
         </li>
-        <li className="text-xl">
+        <li
+          className="text-xl cursor-pointer"
+          onClick={() => setOption(!option)}
+        >
           <FiMenu />
         </li>
       </ul>
+      {option && (
+        <div className="absolute right-8 top-8 w-32 h-20 bg-white rounded-md border shadow-md  p-3  text-rose-500">
+          <div
+            className="flex justify-around items-baseline cursor-pointer"
+            onClick={handleDeleteChat}
+          >
+            <FiTrash />
+            <p>حذف</p>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

@@ -67,6 +67,7 @@ const PORT = process.env.PORT || 5000
 app.use("/", require('./router/upload'))
 app.use("/api", require('./router/allUsers'))
 app.use("/api", require('./router/currentChat'))
+app.use("/api", require('./router/deleteChat'))
 
 
 
